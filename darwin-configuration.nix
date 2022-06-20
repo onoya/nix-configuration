@@ -52,9 +52,15 @@
       "slack"
     ];
 
+    # Mac App Store Apps
     masApps = {
       Magnet = 441258766;
     };
+  };
+
+  # System configuration
+  system = {
+    defaults.dock.autohide = true;
   };
 
   # List packages installed in system profile. To search by name, run:
@@ -78,6 +84,4 @@
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-
-  system.defaults.dock.autohide = true;
 }
