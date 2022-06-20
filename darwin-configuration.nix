@@ -61,6 +61,9 @@
   # System configuration
   system = {
     defaults.dock.autohide = true;
+
+    keyboard.enableKeyMapping = true;
+    keyboard.remapCapsLockToControl = true;
   };
 
   # List packages installed in system profile. To search by name, run:
