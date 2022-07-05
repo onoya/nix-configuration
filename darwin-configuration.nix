@@ -9,10 +9,12 @@
   };
 
   home-manager.users.onoya = { pkgs, ... }: {
+    nixpkgs.config.allowUnfree = true;
+
     home.packages = [
       pkgs.vim
       pkgs.git
-      pkgs.mas
+      pkgs.vscode
     ];
 
     programs.git = {
@@ -42,7 +44,7 @@
     enable = true;
 
     casks = [
-      # "brave-browser"
+      "brave-browser"
       "notion"
       "visual-studio-code"
       "messenger"
@@ -50,6 +52,7 @@
       "alfred"
       "lastpass"
       "slack"
+      "authy"
     ];
 
     # Mac App Store Apps
@@ -69,7 +72,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    [ 
+    [
     ];
 
   # Use a custom configuration.nix location.
