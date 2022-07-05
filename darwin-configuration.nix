@@ -15,6 +15,8 @@
       pkgs.vim
       pkgs.git
       pkgs.vscode
+      # zsh agnoster font
+      pkgs.powerline-fonts
     ];
 
     programs.direnv.enable = true;
@@ -36,7 +38,7 @@
 
       oh-my-zsh = {
         enable = true;
-        theme = "robbyrussell";
+        theme = "agnoster";
         plugins = [
           "git"
         ];
