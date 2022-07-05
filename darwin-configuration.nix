@@ -15,6 +15,7 @@
       pkgs.vim
       pkgs.git
       pkgs.vscode
+      pkgs.nodejs-16_x
       # zsh agnoster font
       pkgs.powerline-fonts
     ];
@@ -58,6 +59,8 @@
       "lastpass"
       "slack"
       "authy"
+      "docker"
+      "figma"
     ];
 
     # Mac App Store Apps
