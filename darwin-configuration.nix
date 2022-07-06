@@ -75,6 +75,8 @@
   system = {
     defaults.dock.autohide = true;
 
+    defaults.screencapture.location = "~/Pictures";
+
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToControl = true;
   };
