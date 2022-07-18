@@ -16,6 +16,7 @@
       pkgs.git
       pkgs.vscode
       pkgs.nodejs-16_x
+      pkgs.mas
       # zsh agnoster font
       pkgs.powerline-fonts
     ];
@@ -53,6 +54,7 @@
 
     casks = [
       "brave-browser"
+      "google-chrome"
       "notion"
       "visual-studio-code"
       "messenger"
@@ -63,11 +65,13 @@
       "authy"
       "docker"
       "figma"
+      "discord"
     ];
 
     # Mac App Store Apps
     masApps = {
       Magnet = 441258766;
+      GiphyCapture = 668208984;
     };
   };
 
@@ -76,6 +80,9 @@
     defaults.dock.autohide = true;
 
     defaults.screencapture.location = "~/Pictures";
+
+    # Disable adding period with double-space
+    defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
 
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToControl = true;
