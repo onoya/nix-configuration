@@ -66,6 +66,7 @@
       "docker"
       "figma"
       "discord"
+      "cyberghost-vpn"
     ];
 
     # Mac App Store Apps
