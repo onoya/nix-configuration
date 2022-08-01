@@ -55,6 +55,7 @@
     casks = [
       "brave-browser"
       "google-chrome"
+      "firefox"
       "notion"
       "visual-studio-code"
       "messenger"
