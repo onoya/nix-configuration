@@ -86,6 +86,10 @@
     # Disable adding period with double-space
     defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
 
+    # Trackpad
+    defaults.trackpad.Clicking = true;
+    defaults.trackpad.Dragging = true;
+
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToControl = true;
   };
