@@ -17,6 +17,7 @@
       pkgs.vscode
       pkgs.nodejs-16_x
       pkgs.mas
+      pkgs.doctl
       # zsh agnoster font
       pkgs.powerline-fonts
     ];
@@ -68,6 +69,7 @@
       "figma"
       "discord"
       "cyberghost-vpn"
+      "spotify"
     ];
 
     # Mac App Store Apps
