@@ -18,6 +18,7 @@
       pkgs.nodejs-16_x
       pkgs.mas
       pkgs.doctl
+      pkgs.yarn
       # zsh agnoster font
       pkgs.powerline-fonts
     ];
@@ -61,6 +62,7 @@
       "visual-studio-code"
       "messenger"
       "iterm2"
+      "tableplus"
       "alfred"
       "lastpass"
       "slack"
