@@ -13,6 +13,7 @@
 
     home.packages = [
       pkgs.vim
+      pkgs.neovim
       pkgs.git
       pkgs.vscode
       pkgs.nodejs-16_x
