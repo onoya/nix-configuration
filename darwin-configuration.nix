@@ -9,14 +9,17 @@
   };
 
   home-manager.users.onoya = { pkgs, ... }: {
+    home.stateVersion = "23.05";
     nixpkgs.config.allowUnfree = true;
 
     home.packages = [
       pkgs.vim
       pkgs.neovim
       pkgs.git
+      pkgs.neovim
+      pkgs.ripgrep
       pkgs.vscode
-      pkgs.nodejs-16_x
+      pkgs.nodejs-18_x
       pkgs.mas
       pkgs.doctl
       pkgs.yarn
@@ -41,6 +44,10 @@
 
     programs.zsh = {
       enable = true;
+
+      shellAliases = {
+        sail = "./vendor/bin/sail";
+      };
 
       oh-my-zsh = {
         enable = true;
