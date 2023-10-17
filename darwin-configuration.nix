@@ -73,6 +73,7 @@
       "discord"
       "cyberghost-vpn"
       "spotify"
+      "mongodb-compass"
     ];
 
     # Mac App Store Apps
