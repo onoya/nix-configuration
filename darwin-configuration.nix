@@ -81,6 +81,7 @@
       "cyberghost-vpn"
       "spotify"
       "mongodb-compass"
+      "vlc"
     ];
 
     # Mac App Store Apps
