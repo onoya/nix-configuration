@@ -9,7 +9,7 @@
   };
 
   home-manager.users.onoya = { pkgs, ... }: {
-    home.stateVersion = "23.11";
+    home.stateVersion = "24.05";
     nixpkgs.config.allowUnfree = true;
 
     home.packages = [
