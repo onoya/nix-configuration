@@ -8,12 +8,10 @@
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-### Add specific channel versions for nixpkgs and home-manager
+### Add/Update required channels
 
 ```sh
-nix-channel --add https://nixos.org/channels/nixpkgs-24.05-darwin nixpkgs
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
-nix-channel --update
+./update-channels.sh
 ```
 
 ### Install nix-darwin
