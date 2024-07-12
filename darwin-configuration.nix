@@ -9,7 +9,7 @@
   };
 
   home-manager.users.onoya = { pkgs, ... }: {
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     nixpkgs.config.allowUnfree = true;
 
     home.packages = [
@@ -25,6 +25,8 @@
       pkgs.yarn
       # zsh agnoster font
       pkgs.powerline-fonts
+      pkgs.nerdfonts
+      pkgs.nodePackages.pnpm
     ];
 
     programs.direnv.enable = true;
