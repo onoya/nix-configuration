@@ -8,12 +8,6 @@
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-### Add/Update required channels
-
-```sh
-./update-channels.sh
-```
-
 ### Install nix-darwin
 
 ```sh
@@ -25,10 +19,17 @@ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 
 ```sh
 git clone git@github.com:onoya/nix-configuration.git
+cd nix-configuration
+```
+
+### Add/Update required channels
+
+```sh
+./update-channels.sh
 ```
 
 ### Build and switch to the configuration
 
 ```sh
-darwin-rebuild switch -I darwin-config=$HOME/codes/nix-configuration/darwin-configuration.nix
+darwin-rebuild switch -I darwin-config=./darwin-configuration.nix
 ```
