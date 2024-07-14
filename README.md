@@ -33,3 +33,11 @@ cd nix-configuration
 ```sh
 darwin-rebuild switch -I darwin-config=./darwin-configuration.nix
 ```
+
+## Cleaning up Storage
+
+You may want to clean up Nix store from time to time to save storage space. You can use the following command to remove system versions older than 15 days, as well as old packages that are no longer in use.
+
+```sh
+nix-collect-garbage --delete-older-than 15d
+```
