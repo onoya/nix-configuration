@@ -30,6 +30,24 @@
         ];
         specialArgs = { inherit inputs; };
       };
+
+      "Work-MacBook-Pro" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./darwin.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.onoya = import ./home.nix;
+            users.users.onoya = {
+              name = "onoya";
+              home = "/Users/onoya";
+            };
+          }
+        ];
+        specialArgs = { inherit inputs; };
+      };
     };
   };
 }

@@ -8,7 +8,6 @@
       pkgs.vim
       pkgs.neovim
       pkgs.git
-      pkgs.neovim
       pkgs.ripgrep
       pkgs.vscode
       pkgs.nodejs-18_x
