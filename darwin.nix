@@ -27,6 +27,7 @@
       "spotify"
       "mongodb-compass"
       "vlc"
+      "zoom"
     ];
 
     # Mac App Store Apps
