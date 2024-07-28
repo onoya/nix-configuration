@@ -14,6 +14,7 @@
       pkgs.mas
       pkgs.doctl
       pkgs.yarn
+      pkgs.tmux
       # zsh agnoster font
       pkgs.powerline-fonts
       pkgs.nerdfonts

@@ -8,6 +8,7 @@
     enable = true;
 
     casks = [
+      "alacritty"
       "alfred"
       "authy"
       "brave-browser"
