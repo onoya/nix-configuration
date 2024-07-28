@@ -70,5 +70,32 @@
         ];
       };
     };
+
+    tmux = {
+      enable = true;
+      shortcut = "a";
+      historyLimit = 100000;
+      baseIndex = 1;
+
+      extraConfig = ''
+        set -g mouse on
+      '';
+    };
+
+    alacritty = {
+      enable = true;
+      settings = {
+        live_config_reload = true;
+
+        font = {
+          normal = {
+            family = "MesloLGS Nerd Font";
+            style = "Regular";
+          };
+
+          size = 14.0;
+        };
+      };
+    };
   };
 }

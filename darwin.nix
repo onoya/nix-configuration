@@ -28,6 +28,7 @@
       "spotify"
       "mongodb-compass"
       "vlc"
+      "zed"
       "zoom"
     ];
 
