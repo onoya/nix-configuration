@@ -87,10 +87,17 @@
       settings = {
         live_config_reload = true;
 
+        window = {
+          padding.x = 10;
+          padding.y = 10;
+          decorations = "Buttonless";
+          opacity = 0.8;
+          blur = true;
+        };
+
         font = {
           normal = {
             family = "MesloLGS Nerd Font";
-            style = "Regular";
           };
 
           size = 14.0;
