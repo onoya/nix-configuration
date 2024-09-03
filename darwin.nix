@@ -23,6 +23,7 @@
       "lastpass"
       "messenger"
       "mongodb-compass"
+      "ngrok"
       "notion"
       "slack"
       "spotify"

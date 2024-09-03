@@ -12,6 +12,7 @@
       pkgs.vscode
       pkgs.nodejs-18_x
       pkgs.mas
+      pkgs.ngrok
       pkgs.doctl
       pkgs.yarn
       pkgs.tmux
@@ -86,6 +87,7 @@
       enable = true;
       settings = {
         live_config_reload = true;
+        working_directory = "~/codes";
 
         window = {
           padding.x = 10;
