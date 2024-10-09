@@ -36,3 +36,17 @@ You may want to clean up Nix store from time to time to save storage space. You 
 ```sh
 nix-collect-garbage --delete-older-than 15d
 ```
+
+## Update dependencies
+
+To update dependencies, you can use the following command:
+
+```sh
+nix flake update
+```
+
+After updating dependencies, you can run the following command to update the system:
+
+```sh
+darwin-rebuild switch --flake .
+```
