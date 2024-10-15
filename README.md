@@ -50,3 +50,12 @@ After updating dependencies, you can run the following command to update the sys
 ```sh
 darwin-rebuild switch --flake .
 ```
+
+## Update Brew packages
+
+To update Brew packages, you can use the following command:
+
+```sh
+/opt/homebrew/bin/brew update
+/opt/homebrew/bin/brew upgrade
+```
