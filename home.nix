@@ -70,6 +70,14 @@
           "git"
         ];
       };
+
+      history = {
+        save = true;
+        size = 100000;
+        saveSize = 100000;
+        shared = true;
+        append = true; # Append history to the history file
+      };
     };
 
     tmux = {
