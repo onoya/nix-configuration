@@ -10,7 +10,7 @@
       pkgs.git
       pkgs.ripgrep
       pkgs.vscode
-      pkgs.nodejs-18_x
+      pkgs.nodejs_20
       pkgs.mas
       pkgs.ngrok
       pkgs.doctl
@@ -19,7 +19,7 @@
       # zsh agnoster font
       pkgs.powerline-fonts
       pkgs.nerdfonts
-      pkgs.nodePackages.pnpm
+      pkgs.pnpm_9
 
       pkgs.ffmpeg
       pkgs.yt-dlp
