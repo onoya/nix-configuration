@@ -23,6 +23,7 @@
 
       pkgs.ffmpeg
       pkgs.yt-dlp
+      pkgs.unar
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

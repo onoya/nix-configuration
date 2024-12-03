@@ -24,6 +24,7 @@
       "messenger"
       "mongodb-compass"
       "ngrok"
+      "nvidia-geforce-now"
       "notion"
       "slack"
       "spotify"
