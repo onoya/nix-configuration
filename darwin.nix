@@ -18,6 +18,7 @@
       "docker"
       "figma"
       "firefox"
+      "ghostty"
       "google-chrome"
       "iterm2"
       "lastpass"
