@@ -28,7 +28,7 @@
             };
           }
         ];
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs nixpkgs; };
       };
 
       "Work-MacBook-Pro" = darwin.lib.darwinSystem {
@@ -46,7 +46,7 @@
             };
           }
         ];
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs nixpkgs; };
       };
     };
   };
