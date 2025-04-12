@@ -5,6 +5,11 @@ let
   dotfiles = builtins.toString ./.config/.;
 in
 {
+  imports = [
+    # Ghostty config
+    ./modules/ghostty.nix
+  ];
+
   home = {
     stateVersion = "24.11";
 
@@ -33,7 +38,6 @@ in
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through "home.file".
     file = {
-      ".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/ghostty/config";
       # # Building this configuration will create a copy of "dotfiles/screenrc" in
       # # the Nix store. Activating the configuration will then make '~/.screenrc' a
       # # symlink to the Nix store copy.
@@ -86,7 +90,6 @@ in
       shortcut = "a";
       historyLimit = 100000;
       baseIndex = 1;
-      newSession = true;
 
       plugins = [
         {
@@ -119,30 +122,6 @@ in
 
         set -g mouse on
       '';
-    };
-
-    alacritty = {
-      enable = true;
-      settings = {
-        live_config_reload = true;
-        working_directory = "~/codes";
-
-        window = {
-          padding.x = 10;
-          padding.y = 10;
-          decorations = "Buttonless";
-          opacity = 0.8;
-          blur = true;
-        };
-
-        font = {
-          normal = {
-            family = "MesloLGS Nerd Font";
-          };
-
-          size = 14.0;
-        };
-      };
     };
   };
 }

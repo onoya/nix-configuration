@@ -15,7 +15,6 @@
     };
 
     casks = [
-      "alacritty"
       "alfred"
       "authy"
       "brave-browser"
