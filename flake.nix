@@ -9,15 +9,19 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, home-manager, nixpkgs }: {
+  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew }: {
     darwinConfigurations = {
       "Main-MacBook-Pro" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           ./darwin.nix
           home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -25,6 +29,13 @@
             users.users.onoya = {
               name = "onoya";
               home = "/Users/onoya";
+            };
+
+            nix-homebrew = {
+              enable = true;
+              user = "onoya";
+              enableRosetta = true;
+              autoMigrate = true;
             };
           }
         ];
@@ -36,6 +47,7 @@
         modules = [
           ./darwin.nix
           home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -43,6 +55,13 @@
             users.users.onoya = {
               name = "onoya";
               home = "/Users/onoya";
+            };
+
+            nix-homebrew = {
+              enable = true;
+              user = "onoya";
+              enableRosetta = true;
+              autoMigrate = true;
             };
           }
         ];
