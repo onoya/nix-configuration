@@ -107,6 +107,8 @@ in
         set-option -g default-shell ${pkgs.zsh}/bin/zsh
         set-option -g default-command ${pkgs.zsh}/bin/zsh
 
+        set -g @continuum-restore 'on'
+
         unbind %
         bind | split-window -h -c "#{pane_current_path}"
 
