@@ -7,6 +7,13 @@
   homebrew = {
     enable = true;
 
+    # Automatically update homebrew packages and run cleanup
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";  # Removes all unused packages and casks
+      upgrade = true;
+    };
+
     casks = [
       "alacritty"
       "alfred"
