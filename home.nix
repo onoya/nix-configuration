@@ -25,6 +25,7 @@ in
       pkgs.doctl
       pkgs.yarn
       pkgs.tmux
+      pkgs.fzf
       # zsh agnoster font
       pkgs.powerline-fonts
       pkgs.nerdfonts
@@ -101,6 +102,7 @@ in
         pkgs.tmuxPlugins.continuum
         pkgs.tmuxPlugins.better-mouse-mode
         pkgs.tmuxPlugins.sensible
+        pkgs.tmuxPlugins.tmux-fzf
       ];
 
       extraConfig = ''
