@@ -14,6 +14,7 @@ in
     stateVersion = "24.11";
 
     packages = [
+      pkgs.awscli2
       pkgs.vim
       pkgs.neovim
       pkgs.git
