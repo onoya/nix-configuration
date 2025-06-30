@@ -11,7 +11,7 @@ in
   ];
 
   home = {
-    stateVersion = "24.11";
+    stateVersion = "25.05";
 
     packages = [
       pkgs.awscli2
@@ -29,7 +29,6 @@ in
       pkgs.fzf
       # zsh agnoster font
       pkgs.powerline-fonts
-      pkgs.nerdfonts
       pkgs.pnpm_9
 
       pkgs.ffmpeg
