@@ -21,6 +21,7 @@
       "authy"
       "brave-browser"
       "chatgpt"
+      "claude"
       "cyberghost-vpn"
       "discord"
       "docker"
