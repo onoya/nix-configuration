@@ -34,6 +34,8 @@ in
       pkgs.ffmpeg
       pkgs.yt-dlp
       pkgs.unar
+
+      pkgs.claude-code
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
