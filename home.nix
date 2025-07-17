@@ -15,6 +15,7 @@ in
 
     packages = [
       pkgs.awscli2
+      pkgs.claude-code
       pkgs.vim
       pkgs.neovim
       pkgs.git
@@ -51,6 +52,14 @@ in
       # '';
     };
   };
+
+  home.sessionVariables = {
+    PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
+  };
+
+  home.sessionPath = [
+    "$PNPM_HOME"
+  ];
 
   programs = {
     direnv = {
