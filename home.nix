@@ -16,25 +16,26 @@ in
     packages = [
       pkgs.awscli2
       pkgs.claude-code
-      pkgs.vim
-      pkgs.neovim
+      pkgs.doctl
+      pkgs.ffmpeg
+      pkgs.fzf
       pkgs.git
-      pkgs.ripgrep
-      pkgs.vscode
+      pkgs.gh
+      pkgs.neovim
+      pkgs.ngrok
       pkgs.nodejs_20
       pkgs.mas
-      pkgs.ngrok
-      pkgs.doctl
-      pkgs.yarn
-      pkgs.tmux
-      pkgs.fzf
+      pkgs.pnpm_9
       # zsh agnoster font
       pkgs.powerline-fonts
-      pkgs.pnpm_9
-
-      pkgs.ffmpeg
-      pkgs.yt-dlp
+      pkgs.ripgrep
+      pkgs.tmux
       pkgs.unar
+      pkgs.vim
+      pkgs.vscode
+      pkgs.yarn
+      pkgs.yt-dlp
+      pkgs.zoxide
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -79,11 +80,21 @@ in
       };
     };
 
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     zsh = {
       enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
 
       shellAliases = {
         sail = "./vendor/bin/sail";
+        ll = "ls -l";
+        rebuild = "darwin-rebuild switch --flake .#";
       };
 
       oh-my-zsh = {
