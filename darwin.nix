@@ -24,7 +24,7 @@
       "claude"
       "cyberghost-vpn"
       "discord"
-      "docker"
+      "docker-desktop"
       "figma"
       "firefox"
       "ghostty"
