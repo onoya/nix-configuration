@@ -8,6 +8,8 @@ in
   imports = [
     # Ghostty config
     ./modules/ghostty.nix
+    # Claude Code config
+    ./modules/claude.nix
   ];
 
   home = {
