@@ -107,6 +107,11 @@ in
       };
 
       initContent = ''
+        # Change to ~/codes directory when opening new terminal (if starting from home)
+        if [[ "$PWD" == "$HOME" ]]; then
+          cd ~/codes 2>/dev/null || true
+        fi
+
         # Auto-start tmux session
         if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
           exec tmux new-session -A -s main
