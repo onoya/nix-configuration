@@ -96,7 +96,6 @@ in
       shellAliases = {
         sail = "./vendor/bin/sail";
         ll = "ls -l";
-        rebuild = "darwin-rebuild switch --flake .#";
       };
 
       oh-my-zsh = {
@@ -112,6 +111,11 @@ in
         if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
           exec tmux new-session -A -s main
         fi
+
+        # Function to handle darwin-rebuild with sudo
+        rebuild() {
+          sudo darwin-rebuild switch --flake .#
+        }
       '';
     };
 
