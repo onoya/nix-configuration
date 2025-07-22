@@ -17,7 +17,7 @@
     };
 
     casks = [
-      "alfred"
+      "raycast"
       "authy"
       "brave-browser"
       "chatgpt"
