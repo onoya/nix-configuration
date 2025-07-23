@@ -69,6 +69,12 @@
     keyboard.remapCapsLockToControl = true;
   };
 
+  # Enable Touch ID for sudo
+  security.pam.services.sudo_local.enable = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
+  security.pam.services.sudo_local.reattach = true;
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
