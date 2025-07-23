@@ -23,6 +23,8 @@ in
       pkgs.fzf
       pkgs.git
       pkgs.gh
+      pkgs.neo
+      pkgs.neofetch
       pkgs.neovim
       pkgs.ngrok
       pkgs.nodejs_20
