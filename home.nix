@@ -109,6 +109,9 @@ in
       };
 
       initContent = ''
+        # Enable command timing for commands taking 3+ seconds
+        export REPORTTIME=3
+
         # Change to ~/codes directory when opening new terminal (if starting from home)
         if [[ "$PWD" == "$HOME" ]]; then
           cd ~/codes 2>/dev/null || true
