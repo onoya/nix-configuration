@@ -25,6 +25,7 @@
       "cyberghost-vpn"
       "discord"
       "docker-desktop"
+      "ea"
       "figma"
       "firefox"
       "ghostty"
