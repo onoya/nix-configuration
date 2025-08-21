@@ -37,6 +37,7 @@
       "ngrok"
       "nvidia-geforce-now"
       "notion"
+      "obs"
       "slack"
       "spotify"
       "tableplus"
