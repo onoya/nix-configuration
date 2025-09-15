@@ -17,11 +17,11 @@
     };
 
     casks = [
-      "raycast"
       "authy"
       "brave-browser"
       "chatgpt"
       "claude"
+      "cursor"
       "cyberghost-vpn"
       "discord"
       "docker-desktop"
@@ -30,14 +30,12 @@
       "firefox"
       "ghostty"
       "google-chrome"
-      "iterm2"
-      "lastpass"
       "messenger"
       "mongodb-compass"
       "ngrok"
-      "nvidia-geforce-now"
       "notion"
       "obs"
+      "raycast"
       "slack"
       "spotify"
       "tableplus"
