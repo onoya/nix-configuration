@@ -113,6 +113,12 @@ in
         # Enable command timing for commands taking 3+ seconds
         export REPORTTIME=3
 
+        # Fix conflicting color environment variables set by Claude Code
+        # Keep NO_COLOR for consistent behavior, but remove FORCE_COLOR to avoid Node.js warnings
+        if [[ -n "$NO_COLOR" && -n "$FORCE_COLOR" ]]; then
+          unset FORCE_COLOR
+        fi
+
         # Change to ~/codes directory when opening new terminal (if starting from home)
         if [[ "$PWD" == "$HOME" ]]; then
           cd ~/codes 2>/dev/null || true
