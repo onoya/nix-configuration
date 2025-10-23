@@ -81,6 +81,8 @@ in
         init.defaultBranch = "main";
 
         core.editor = "vim";
+
+        push.autoSetupRemote = true;
       };
     };
 
