@@ -74,10 +74,9 @@ in
 
     git = {
       enable = true;
-      userEmail = "ono.naoyaa@gmail.com";
-      userName = "Naoya Ono";
-
-      extraConfig = {
+      settings = {
+        user.email = "ono.naoyaa@gmail.com";
+        user.name = "Naoya Ono";
         init.defaultBranch = "main";
 
         core.editor = "vim";
