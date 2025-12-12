@@ -27,7 +27,7 @@ in
       pkgs.neofetch
       pkgs.neovim
       pkgs.ngrok
-      pkgs.nodejs_20
+      pkgs.nodejs_24
       pkgs.mas
       pkgs.pnpm_9
       # zsh agnoster font
