@@ -30,7 +30,6 @@
       "firefox"
       "ghostty"
       "google-chrome"
-      "messenger"
       "mongodb-compass"
       "ngrok"
       "notion"
