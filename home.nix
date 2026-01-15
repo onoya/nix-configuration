@@ -23,6 +23,7 @@ in
       pkgs.fzf
       pkgs.git
       pkgs.gh
+      pkgs.jq
       pkgs.neo
       pkgs.neofetch
       pkgs.neovim
