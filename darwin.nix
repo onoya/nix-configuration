@@ -16,6 +16,12 @@
       upgrade = true;
     };
 
+    # Declare taps to prevent cleanup from trying to untap nix-managed taps
+    taps = [
+      "homebrew/homebrew-core"
+      "homebrew/homebrew-cask"
+    ];
+
     casks = [
       "authy"
       "brave-browser"

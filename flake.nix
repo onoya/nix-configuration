@@ -11,9 +11,19 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    # Homebrew taps
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew }: {
+  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask }: {
     darwinConfigurations = {
       "Main-MacBook-Pro" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
@@ -35,6 +45,11 @@
               user = "onoya";
               enableRosetta = true;
               autoMigrate = true;
+              mutableTaps = false;
+              taps = {
+                "homebrew/homebrew-core" = inputs.homebrew-core;
+                "homebrew/homebrew-cask" = inputs.homebrew-cask;
+              };
             };
           }
         ];
@@ -61,6 +76,11 @@
               user = "onoya";
               enableRosetta = true;
               autoMigrate = true;
+              mutableTaps = false;
+              taps = {
+                "homebrew/homebrew-core" = inputs.homebrew-core;
+                "homebrew/homebrew-cask" = inputs.homebrew-cask;
+              };
             };
           }
         ];
