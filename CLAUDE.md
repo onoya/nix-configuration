@@ -58,6 +58,7 @@ nix run nix-darwin --extra-experimental-features nix-command --extra-experimenta
 ### Environment Variables
 - `PNPM_HOME` configured for global package management
 - Development paths automatically configured via Nix
+- Secrets managed via `~/.secrets` (see README.md for setup)
 
 ## Workflow Notes
 
