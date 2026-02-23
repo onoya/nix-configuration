@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
-  system.primaryUser = "onoya";
+  system.primaryUser = username;
 
   homebrew = {
     enable = true;

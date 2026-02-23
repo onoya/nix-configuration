@@ -6,7 +6,7 @@
       includeCoAuthoredBy = false;
       statusLine = {
         type = "command";
-        command = "/bin/bash /Users/onoya/.claude/statusline-command.sh";
+        command = "/bin/bash ${config.home.homeDirectory}/.claude/statusline-command.sh";
       };
     };
 
