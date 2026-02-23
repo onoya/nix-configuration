@@ -129,9 +129,9 @@ in
           cd ~/codes 2>/dev/null || true
         fi
 
-        # Auto-start tmux session
+        # Auto-start tmux session (attach to restored/existing session, or create "main")
         if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-          exec tmux new-session -A -s main
+          exec tmux attach || exec tmux new-session -s main
         fi
 
         # Function to handle darwin-rebuild with sudo
@@ -165,6 +165,7 @@ in
         set-option -g default-command ${pkgs.zsh}/bin/zsh
 
         set -g @continuum-restore 'on'
+        set -g @continuum-boot 'on'
         set -g status-right 'Continuum status: #{continuum_status}'
 
         # reload config
