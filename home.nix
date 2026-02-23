@@ -17,7 +17,6 @@ in
 
     packages = [
       pkgs.awscli2
-      pkgs.claude-code
       pkgs.doctl
       pkgs.ffmpeg
       pkgs.fzf
@@ -39,7 +38,6 @@ in
       pkgs.vim
       pkgs.vscode
       pkgs.yarn
-      pkgs.yt-dlp
       pkgs.zoxide
     ];
 

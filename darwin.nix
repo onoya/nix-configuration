@@ -21,6 +21,7 @@
       "brave-browser"
       "chatgpt"
       "claude"
+      "claude-code"
       "cursor"
       "cyberghost-vpn"
       "discord"
