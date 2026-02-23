@@ -3,7 +3,8 @@
 {
   home.file.".config/ghostty/config".text = ''
     cursor-style = block
-    background-opacity = 0.9
+    background-opacity = 0.8
+    background-blur = true
     working-directory = ${config.home.homeDirectory}/codes
     window-save-state = always
 
