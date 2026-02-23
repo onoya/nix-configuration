@@ -111,6 +111,10 @@ in
       };
 
       initContent = ''
+        # Source secrets file (API keys, tokens, etc.)
+        # This file is not tracked in git - create manually with 'export' statements
+        [ -f ~/.secrets ] && source ~/.secrets
+
         # Enable command timing for commands taking 3+ seconds
         export REPORTTIME=3
 

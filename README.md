@@ -59,3 +59,32 @@ To update Brew packages, you can use the following command:
 /opt/homebrew/bin/brew update
 /opt/homebrew/bin/brew upgrade
 ```
+
+## Secrets Management
+
+Secrets (API keys, tokens, credentials) are managed via `~/.secrets` file which is sourced automatically by zsh.
+
+### Setup
+
+```sh
+# Create the secrets file (not tracked in git)
+touch ~/.secrets
+chmod 600 ~/.secrets
+```
+
+### Format
+
+```sh
+# ~/.secrets
+export GITHUB_TOKEN="ghp_xxxxxxxxxxxx"
+export OPENAI_API_KEY="sk-xxxxxxxxxxxx"
+export AWS_ACCESS_KEY_ID="AKIA..."
+export AWS_SECRET_ACCESS_KEY="..."
+```
+
+### Important Notes
+
+- This file is **NOT** managed by Nix and must be created manually on each machine
+- Never commit secrets to version control
+- Use `chmod 600` to restrict file permissions
+- After editing `~/.secrets`, run `source ~/.zshrc` or open a new terminal for changes to take effect
