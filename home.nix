@@ -38,6 +38,7 @@ in
       pkgs.vim
       pkgs.vscode
       pkgs.yarn
+      pkgs.just
       pkgs.zoxide
     ];
 
