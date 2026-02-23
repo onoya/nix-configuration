@@ -1,15 +1,17 @@
 { ... }:
 
 {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      side-by-side = true;
+    };
+  };
+
   programs.git = {
     enable = true;
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-      };
-    };
     settings = {
       user.email = "ono.naoyaa@gmail.com";
       user.name = "Naoya Ono";
