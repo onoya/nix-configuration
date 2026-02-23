@@ -13,58 +13,47 @@
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew }: {
-    darwinConfigurations = {
-      "Main-MacBook-Pro" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
+  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew }:
+  let
+    mkDarwinSystem = { hostname, username, system ? "aarch64-darwin" }:
+      darwin.lib.darwinSystem {
+        inherit system;
         modules = [
           ./darwin.nix
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
+            networking.hostName = hostname;
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.onoya = import ./home.nix;
-            users.users.onoya = {
-              name = "onoya";
-              home = "/Users/onoya";
+            home-manager.users.${username} = import ./home.nix;
+
+            users.users.${username} = {
+              name = username;
+              home = "/Users/${username}";
             };
 
             nix-homebrew = {
               enable = true;
-              user = "onoya";
+              user = username;
               enableRosetta = true;
               autoMigrate = true;
             };
           }
         ];
-        specialArgs = { inherit inputs nixpkgs; };
+        specialArgs = { inherit inputs nixpkgs username; };
+      };
+  in {
+    darwinConfigurations = {
+      "Main-MacBook-Pro" = mkDarwinSystem {
+        hostname = "Main-MacBook-Pro";
+        username = "onoya";
       };
 
-      "Work-MacBook-Pro" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./darwin.nix
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.onoya = import ./home.nix;
-            users.users.onoya = {
-              name = "onoya";
-              home = "/Users/onoya";
-            };
-
-            nix-homebrew = {
-              enable = true;
-              user = "onoya";
-              enableRosetta = true;
-              autoMigrate = true;
-            };
-          }
-        ];
-        specialArgs = { inherit inputs nixpkgs; };
+      "Work-MacBook-Pro" = mkDarwinSystem {
+        hostname = "Work-MacBook-Pro";
+        username = "onoya";
       };
     };
   };
