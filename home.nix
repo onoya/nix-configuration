@@ -1,15 +1,12 @@
 { config, pkgs, lib, ... }:
 
-let
-  # This gets the directory where the home.nix file is located
-  dotfiles = builtins.toString ./.config/.;
-in
 {
   imports = [
-    # Ghostty config
     ./modules/ghostty.nix
-    # Claude Code config
     ./modules/claude.nix
+    ./modules/git.nix
+    ./modules/zsh.nix
+    ./modules/tmux.nix
   ];
 
   home = {
@@ -17,45 +14,37 @@ in
 
     packages = [
       pkgs.awscli2
+      pkgs.bat
+      pkgs.btop
+      pkgs.comma
       pkgs.doctl
+      pkgs.eza
+      pkgs.fd
       pkgs.ffmpeg
       pkgs.fzf
-      pkgs.git
       pkgs.gh
       pkgs.jq
+      pkgs.just
+      pkgs.lazygit
       pkgs.neo
       pkgs.neofetch
       pkgs.neovim
+      pkgs.nh
       pkgs.ngrok
+      pkgs.nix-index
       pkgs.nodejs_24
       pkgs.mas
       pkgs.pnpm_9
       # zsh agnoster font
       pkgs.powerline-fonts
       pkgs.ripgrep
-      pkgs.tmux
       pkgs.unar
       pkgs.vim
       pkgs.vscode
       pkgs.yarn
-      pkgs.just
+      pkgs.yazi
       pkgs.zoxide
     ];
-
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through "home.file".
-    file = {
-      # # Building this configuration will create a copy of "dotfiles/screenrc" in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = ./dotfiles/screenrc;
-
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-    };
   };
 
   home.sessionVariables = {
@@ -72,125 +61,9 @@ in
       enableZshIntegration = true;
     };
 
-    git = {
-      enable = true;
-      settings = {
-        user.email = "ono.naoyaa@gmail.com";
-        user.name = "Naoya Ono";
-        init.defaultBranch = "main";
-
-        core.editor = "vim";
-
-        push.autoSetupRemote = true;
-      };
-    };
-
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-    };
-
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-
-      shellAliases = {
-        sail = "./vendor/bin/sail";
-        ll = "ls -l";
-      };
-
-      oh-my-zsh = {
-        enable = true;
-        theme = "agnoster";
-        plugins = [
-          "git"
-        ];
-      };
-
-      initContent = ''
-        # Source secrets file (API keys, tokens, etc.)
-        # This file is not tracked in git - create manually with 'export' statements
-        [ -f ~/.secrets ] && source ~/.secrets
-
-        # Enable command timing for commands taking 3+ seconds
-        export REPORTTIME=3
-
-        # Fix conflicting color environment variables set by Claude Code
-        # Keep NO_COLOR for consistent behavior, but remove FORCE_COLOR to avoid Node.js warnings
-        if [[ -n "$NO_COLOR" && -n "$FORCE_COLOR" ]]; then
-          unset FORCE_COLOR
-        fi
-
-        # Change to ~/codes directory when opening new terminal (if starting from home)
-        if [[ "$PWD" == "$HOME" ]]; then
-          cd ~/codes 2>/dev/null || true
-        fi
-
-        # Auto-start tmux session (attach to restored/existing session, or create "main")
-        if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-          exec tmux attach || exec tmux new-session -s main
-        fi
-
-        # Function to handle darwin-rebuild with sudo
-        rebuild() {
-          sudo darwin-rebuild switch --flake .#
-        }
-      '';
-    };
-
-    tmux = {
-      enable = true;
-      shortcut = "a";
-      historyLimit = 100000;
-      baseIndex = 1;
-
-      plugins = [
-        {
-          plugin = pkgs.tmuxPlugins.resurrect;
-          extraConfig = ''
-            set -g @resurrect-capture-pane-contents 'on'
-          '';
-        }
-        pkgs.tmuxPlugins.continuum
-        pkgs.tmuxPlugins.better-mouse-mode
-        pkgs.tmuxPlugins.sensible
-        pkgs.tmuxPlugins.tmux-fzf
-      ];
-
-      extraConfig = ''
-        set-option -g default-shell ${pkgs.zsh}/bin/zsh
-        set-option -g default-command ${pkgs.zsh}/bin/zsh
-
-        set -g @continuum-restore 'on'
-        set -g @continuum-boot 'on'
-        set -g status-right 'Continuum status: #{continuum_status}'
-
-        # reload config
-        bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
-
-        # change binding for split horizontally to - and set it to the current path
-        unbind %
-        bind | split-window -h -c "#{pane_current_path}"
-
-        # change binding for split vertically to | and set it to the current path
-        unbind '"'
-        bind - split-window -v -c "#{pane_current_path}"
-
-        # creates a new window in the current path
-        bind c new-window -c "#{pane_current_path}"
-
-        # resize panes
-        bind -r j resize-pane -D 5
-        bind -r k resize-pane -U 5
-        bind -r l resize-pane -R 5
-        bind -r h resize-pane -L 5
-
-        bind -r m resize-pane -Z
-
-        set -g mouse on
-      '';
     };
   };
 }
