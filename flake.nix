@@ -19,7 +19,8 @@
       darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          ./darwin.nix
+          ./hosts/${hostname}
+          ./modules/darwin
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
@@ -27,7 +28,7 @@
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home.nix;
+            home-manager.users.${username} = import ./modules/home;
 
             users.users.${username} = {
               name = username;
@@ -42,7 +43,7 @@
             };
           }
         ];
-        specialArgs = { inherit inputs nixpkgs username; };
+        specialArgs = { inherit inputs nixpkgs username system; };
       };
   in {
     darwinConfigurations = {

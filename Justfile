@@ -4,12 +4,12 @@ default:
 
 # Rebuild and switch to current configuration
 rebuild:
-    sudo darwin-rebuild switch --flake .
+    nh darwin switch .
 
 # Update all flake inputs and rebuild
 update:
     nix flake update
-    sudo darwin-rebuild switch --flake .
+    nh darwin switch .
 
 # Remove generations older than 15 days
 gc:

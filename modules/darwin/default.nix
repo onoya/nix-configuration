@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, username, system, ... }:
 
 {
   # Necessary for using flakes on this system.
@@ -75,19 +75,11 @@
   security.pam.services.sudo_local.watchIdAuth = true;
   security.pam.services.sudo_local.reattach = true;
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-    ];
+  environment.systemPackages = [];
 
   environment.variables = {
     NIXPKGS_ALLOW_INSECURE = "1";
   };
-
-  # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
@@ -100,6 +92,5 @@
   system.stateVersion = 4;
 
   nixpkgs.config.allowUnfree = true;
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.hostPlatform = system;
 }
