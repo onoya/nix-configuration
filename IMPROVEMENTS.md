@@ -14,6 +14,7 @@ Tracking ongoing improvements to bring this config in line with community best p
 - [x] `nh` — replaces `rebuild` function and `just rebuild`/`update` recipes
 - [x] `comma` + `nix-index` — run packages without installing
 - [x] Module splitting — `modules/git.nix`, `modules/zsh.nix`, `modules/tmux.nix`
+- [x] `devShells` pattern — already in use across projects (e.g. lumina5)
 
 ## In Progress
 
@@ -27,20 +28,8 @@ Replace oh-my-zsh with the starship prompt. Faster, Rust-based, native Home Mana
 - [ ] Evaluate vs current oh-my-zsh setup
 - [ ] Add `programs.starship` to a module if switching
 
-### `comma` (`,`)
-Run any Nix package without installing it (e.g. `, ffmpeg ...`).
-
-- [ ] Add `nix-index` and `comma` to packages
-
-### `devShells` Pattern
-Per-project dev environments via `flake.nix` + `direnv`. The Nix holy grail for project isolation.
-
-- [ ] Document the pattern and add an example to README
-- [ ] Add example `devShell` to this repo's flake for working on the nix config itself
-
 ### Future Linux Support
-Low-effort structural prep before the config grows further.
 
-- [ ] Split `darwin.nix` darwin-specific config from shared config
-- [ ] Restructure into `hosts/` and `common/` directories
-- [ ] Fix hardcoded `nixpkgs.hostPlatform = "aarch64-darwin"` in `darwin.nix` (use `system` arg from `mkDarwinSystem`)
+- [x] Restructure into `hosts/` and `modules/darwin/` + `modules/home/` directories
+- [x] Fix hardcoded `nixpkgs.hostPlatform` — now uses `system` arg from `mkDarwinSystem`
+- [ ] Add `mkNixosSystem` helper and a Linux host when the time comes

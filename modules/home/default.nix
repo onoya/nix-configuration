@@ -2,11 +2,11 @@
 
 {
   imports = [
-    ./modules/ghostty.nix
-    ./modules/claude.nix
-    ./modules/git.nix
-    ./modules/zsh.nix
-    ./modules/tmux.nix
+    ../ghostty.nix
+    ../claude.nix
+    ../git.nix
+    ../zsh.nix
+    ../tmux.nix
   ];
 
   home = {
