@@ -47,7 +47,7 @@
 
       # Auto-start tmux session (attach to restored/existing session, or create "main")
       if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-        exec tmux attach || exec tmux new-session -s main
+        tmux attach 2>/dev/null || exec tmux new-session -s main
       fi
 
       # Rebuild system config — works from anywhere, not just inside the repo
