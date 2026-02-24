@@ -10,6 +10,7 @@
 
     # Global hotkey to show/hide Ghostty
     keybind = global:alt+space=toggle_quick_terminal
+    quick-terminal-size = 100%,100%
 
     # Shift+Enter for newline in Claude Code
     keybind = shift+enter=text:\x1b\r
