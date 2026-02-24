@@ -6,11 +6,12 @@ default:
 rebuild:
     nh darwin switch .
 
-# Update all flake inputs and rebuild
+# Full system update: upgrade Nix, update flake inputs, and rebuild
 update:
+    sudo nix upgrade-nix
     nix flake update
     nh darwin switch .
 
-# Remove generations older than 15 days
+# Remove generations older than 30 days
 gc:
-    nix-collect-garbage --delete-older-than 15d
+    nix-collect-garbage --delete-older-than 30d
