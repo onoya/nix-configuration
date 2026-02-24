@@ -5,7 +5,6 @@
     ../ghostty.nix
     ../claude.nix
     ../git.nix
-    ../nvim.nix
     ../zsh.nix
     ../tmux.nix
   ];
