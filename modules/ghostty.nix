@@ -2,6 +2,7 @@
 
 {
   home.file.".config/ghostty/config".text = ''
+    font-family = JetBrainsMono Nerd Font
     cursor-style = block
     background-opacity = 0.8
     background-blur = true

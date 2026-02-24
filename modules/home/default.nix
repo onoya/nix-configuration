@@ -35,8 +35,6 @@
       pkgs.nodejs_24
       pkgs.mas
       pkgs.pnpm_9
-      # zsh agnoster font
-      pkgs.powerline-fonts
       pkgs.ripgrep
       pkgs.unar
       pkgs.vscode
