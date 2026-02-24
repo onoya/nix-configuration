@@ -5,6 +5,7 @@
     ../ghostty.nix
     ../claude.nix
     ../git.nix
+    ../nvim.nix
     ../zsh.nix
     ../tmux.nix
   ];
@@ -38,7 +39,6 @@
       pkgs.powerline-fonts
       pkgs.ripgrep
       pkgs.unar
-      pkgs.vim
       pkgs.vscode
       pkgs.yarn
       pkgs.yazi

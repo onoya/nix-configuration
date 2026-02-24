@@ -11,9 +11,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
-  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew, nixCats }:
   let
     mkDarwinSystem = { hostname, username, system ? "aarch64-darwin" }:
       darwin.lib.darwinSystem {
@@ -28,6 +30,8 @@
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.sharedModules = [ inputs.nixCats.homeModule ];
             home-manager.users.${username} = import ./modules/home;
 
             users.users.${username} = {
