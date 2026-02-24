@@ -6,6 +6,7 @@
     shortcut = "a";
     historyLimit = 100000;
     baseIndex = 1;
+    terminal = "tmux-256color";
 
     plugins = [
       {
@@ -18,15 +19,34 @@
       pkgs.tmuxPlugins.better-mouse-mode
       pkgs.tmuxPlugins.sensible
       pkgs.tmuxPlugins.tmux-fzf
+      pkgs.tmuxPlugins.yank
+      {
+        plugin = pkgs.tmuxPlugins.catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavor "mocha"
+          set -g @catppuccin_window_status_style "rounded"
+          set -g @catppuccin_window_default_text "#W"
+          set -g @catppuccin_window_current_text "#W"
+          set -g status-right-length 100
+          set -g status-left-length 100
+          set -g status-left ""
+          set -g status-right "#{E:@catppuccin_status_application}"
+          set -ag status-right "#{E:@catppuccin_status_session}"
+          set -ag status-right "#{E:@catppuccin_status_date_time}"
+        '';
+      }
     ];
 
     extraConfig = ''
       set-option -g default-shell ${pkgs.zsh}/bin/zsh
       set-option -g default-command ${pkgs.zsh}/bin/zsh
 
+      # true color support
+      set -sa terminal-overrides ",xterm-256color:RGB"
+      set -g focus-events on
+
       set -g @continuum-restore 'on'
       set -g @continuum-boot 'on'
-      set -g status-right 'Continuum status: #{continuum_status}'
 
       # reload config
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
@@ -51,6 +71,12 @@
       bind -r m resize-pane -Z
 
       set -g mouse on
+
+      # active pane highlighting: dim inactive panes, bright active pane
+      set -g window-style 'fg=colour245,bg=default'
+      set -g window-active-style 'fg=colour255,bg=default'
+      set -g pane-border-style 'fg=colour238,bg=default'
+      set -g pane-active-border-style 'fg=colour39,bg=default'
     '';
   };
 }
