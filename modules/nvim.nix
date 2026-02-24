@@ -20,6 +20,10 @@
         ui = with pkgs.vimPlugins; [
           lualine-nvim
           nvim-tree-lua
+          alpha-nvim
+          indent-blankline-nvim
+          gitsigns-nvim
+          comment-nvim
         ];
         telescope = with pkgs.vimPlugins; [
           telescope-nvim
