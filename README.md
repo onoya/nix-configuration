@@ -54,13 +54,25 @@ Commands are available via `just` from the repo root:
 
 ```sh
 just rebuild   # apply config changes (no package updates)
-just update    # full update: upgrade Nix + flake inputs + rebuild
+just update    # update flake inputs and rebuild
 just gc        # remove generations older than 30 days
 ```
 
 Run `just` with no arguments to list all available commands.
 
-**Why `just update` runs `sudo nix upgrade-nix`:** The Determinate Systems installer places Nix in `/nix/var/nix/profiles/default/bin/`, which takes PATH precedence over nix-darwin's copy. `nix flake update` upgrades packages but not this Nix binary — `sudo nix upgrade-nix` handles that.
+The Determinate Systems daemon (`determinate-nixd`) automatically keeps the Nix binary up to date — no manual upgrade step needed.
+
+---
+
+## Cleaning Up
+
+Remove leftover channels if you previously used channel-based Nix (not needed for pure flakes):
+
+```sh
+nix-channel --list              # check for leftover channels
+nix-channel --remove nixpkgs    # remove if present
+nix-channel --remove home-manager
+```
 
 ---
 

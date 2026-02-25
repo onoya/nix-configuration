@@ -6,9 +6,8 @@ default:
 rebuild:
     nh darwin switch .
 
-# Full system update: upgrade Nix, update flake inputs, and rebuild
+# Update flake inputs and rebuild
 update:
-    sudo nix upgrade-nix
     nix flake update
     nh darwin switch .
 
