@@ -8,6 +8,60 @@
         type = "command";
         command = "/bin/bash ${config.home.homeDirectory}/.claude/statusline-command.sh";
       };
+      hooks = {
+        Notification = [
+          {
+            matcher = "";
+            hooks = [
+              {
+                type = "command";
+                command = "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'";
+              }
+            ];
+          }
+        ];
+      };
+      allowTools = [
+        # MCP servers
+        "mcp__context7__get-library-docs"
+        "mcp__context7__query-docs"
+        "mcp__context7__resolve-library-id"
+        "mcp__sequential-thinking__sequentialthinking"
+
+        # Safe Bash commands — read-only / non-destructive
+        "Bash(git status*)"
+        "Bash(git diff*)"
+        "Bash(git log*)"
+        "Bash(git branch*)"
+        "Bash(git show*)"
+        "Bash(nix flake check*)"
+        "Bash(nix flake show*)"
+        "Bash(darwin-rebuild build*)"
+        "Bash(nh darwin switch*)"
+        "Bash(which *)"
+        "Bash(cat *)"
+        "Bash(ls *)"
+        "Bash(head *)"
+        "Bash(tail *)"
+        "Bash(wc *)"
+        "Bash(echo *)"
+        "Bash(pwd)"
+        "Bash(env)"
+        "Bash(printenv*)"
+        "Bash(man *)"
+        "Bash(gh pr view*)"
+        "Bash(gh pr list*)"
+        "Bash(gh pr status*)"
+        "Bash(gh pr checks*)"
+        "Bash(gh pr diff*)"
+        "Bash(gh issue view*)"
+        "Bash(gh issue list*)"
+        "Bash(gh issue status*)"
+        "Bash(gh repo view*)"
+        "Bash(gh repo list*)"
+        "Bash(jq *)"
+        "Bash(fastfetch*)"
+      ];
     };
 
     ".claude/statusline-command.sh" = {
