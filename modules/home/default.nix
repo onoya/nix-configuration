@@ -2,12 +2,13 @@
 
 {
   imports = [
-    ../ghostty.nix
     ../claude.nix
+    ../fastfetch.nix
+    ../ghostty.nix
     ../git.nix
     ../nvim.nix
-    ../zsh.nix
     ../tmux.nix
+    ../zsh.nix
   ];
 
   home = {
@@ -29,7 +30,6 @@
       pkgs.just
       pkgs.lazygit
       pkgs.neo
-      pkgs.fastfetch
       pkgs.nh
       pkgs.ngrok
       pkgs.nix-output-monitor

@@ -114,6 +114,9 @@
         tmux attach 2>/dev/null || exec tmux new-session -s main
       fi
 
+      # Show system info on new shell (runs inside tmux panes/windows)
+      fastfetch
+
       # Rebuild system config — works from anywhere, not just inside the repo
       rebuild() {
         nh darwin switch ${config.home.homeDirectory}/codes/nix-configuration
