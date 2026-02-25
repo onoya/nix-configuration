@@ -8,6 +8,7 @@
     background-blur = true
     working-directory = ${config.home.homeDirectory}/codes
     window-save-state = always
+    initial-window = false
 
     # Global hotkey to show/hide Ghostty
     keybind = global:alt+space=toggle_quick_terminal
