@@ -18,6 +18,7 @@
       pkgs.bat
       pkgs.btop
       pkgs.comma
+      pkgs.devenv
       pkgs.doctl
       pkgs.eza
       pkgs.fd
