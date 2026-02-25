@@ -20,10 +20,6 @@
 
     # Starship uses a custom prompt with non-catppuccin colors
     starship.enable = false;
-
-    # Ghostty is configured via home.file, not programs.ghostty,
-    # so the catppuccin module wouldn't activate anyway
-    ghostty.enable = false;
   };
 
   home = {
