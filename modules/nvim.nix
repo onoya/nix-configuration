@@ -43,6 +43,9 @@
         formatting = with pkgs.vimPlugins; [
           conform-nvim
         ];
+        git = with pkgs.vimPlugins; [
+          snacks-nvim
+        ];
       };
 
       lspsAndRuntimeDeps = {
@@ -59,6 +62,9 @@
           stylua
           prettier
           alejandra
+        ];
+        git = with pkgs; [
+          lazygit
         ];
       };
     };
@@ -78,6 +84,7 @@
           lsp = true;
           completion = true;
           formatting = true;
+          git = true;
         };
       };
     };
