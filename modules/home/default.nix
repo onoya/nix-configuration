@@ -32,7 +32,7 @@
       pkgs.fastfetch
       pkgs.nh
       pkgs.ngrok
-      pkgs.nix-index
+      pkgs.nix-output-monitor
       pkgs.nodejs_24
       pkgs.mas
       pkgs.pnpm_9
