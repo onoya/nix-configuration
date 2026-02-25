@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../aerospace.nix
     ../ghostty.nix
     ../claude.nix
     ../git.nix

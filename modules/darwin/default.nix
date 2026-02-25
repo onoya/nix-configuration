@@ -17,6 +17,7 @@
     };
 
     casks = [
+      "aerospace"
       "authy"
       "brave-browser"
       "chatgpt"
@@ -47,7 +48,6 @@
 
     # Mac App Store Apps
     masApps = {
-      Magnet = 441258766;
       GiphyCapture = 668208984;
     };
   };
