@@ -26,7 +26,7 @@
           set -g @catppuccin_flavor "mocha"
           set -g @catppuccin_window_status_style "rounded"
           set -g @catppuccin_window_default_text "#W"
-          set -g @catppuccin_window_current_text "#W"
+          set -g @catppuccin_window_current_text "#{?window_zoomed_flag, 󰊓 ,}#W"
           set -g status-right-length 100
           set -g status-left-length 100
           set -g status-left ""
