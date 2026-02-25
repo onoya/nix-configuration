@@ -28,7 +28,7 @@
       pkgs.just
       pkgs.lazygit
       pkgs.neo
-      pkgs.neofetch
+      pkgs.fastfetch
       pkgs.nh
       pkgs.ngrok
       pkgs.nix-index
