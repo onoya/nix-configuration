@@ -65,6 +65,17 @@
     };
   };
 
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      auto_sync = false;
+      update_check = false;
+      style = "compact";
+      inline_height = 20;
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -80,14 +91,19 @@
       lt = "eza --tree --icons";
       find = "fd";
       lg = "lazygit";
-    };
 
-    oh-my-zsh = {
-      enable = true;
-      theme = "";
-      plugins = [
-        "git"
-      ];
+      # Git aliases (migrated from oh-my-zsh git plugin)
+      ga = "git add";
+      gaa = "git add --all";
+      gc = "git commit";
+      gcmsg = "git commit -m";
+      gco = "git checkout";
+      gd = "git diff";
+      gl = "git pull";
+      gp = "git push";
+      gst = "git status";
+      gb = "git branch";
+      glog = "git log --oneline --graph --decorate";
     };
 
     initContent = ''
