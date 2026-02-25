@@ -14,6 +14,7 @@
     stateVersion = "25.05";
 
     packages = [
+      pkgs.age
       pkgs.awscli2
       pkgs.bat
       pkgs.btop
@@ -36,6 +37,7 @@
       pkgs.mas
       pkgs.pnpm_9
       pkgs.ripgrep
+      pkgs.sops
       pkgs.unar
       pkgs.vscode
       pkgs.yarn
@@ -62,5 +64,10 @@
       enable = true;
       enableZshIntegration = true;
     };
+  };
+
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   };
 }

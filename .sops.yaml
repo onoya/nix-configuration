@@ -1,0 +1,14 @@
+# .sops.yaml - sops configuration
+#
+# IMPORTANT: Back up your age private key in a password manager (1Password, Bitwarden, etc.)
+# The private key lives at ~/.config/sops/age/keys.txt
+# If you lose it, you CANNOT decrypt your secrets.
+#
+# To get your public key: age-keygen -y ~/.config/sops/age/keys.txt
+keys:
+  - &personal age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # Replace with your age public key
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+        - *personal
