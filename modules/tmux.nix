@@ -1,6 +1,19 @@
 { pkgs, ... }:
 
 {
+  # Catppuccin tmux theme is managed by catppuccin/nix (flavor set globally)
+  catppuccin.tmux.extraConfig = ''
+    set -g @catppuccin_window_status_style "rounded"
+    set -g @catppuccin_window_default_text "#W"
+    set -g @catppuccin_window_current_text "#{?window_zoomed_flag, 󰊓 ,}#W"
+    set -g status-right-length 100
+    set -g status-left-length 100
+    set -g status-left ""
+    set -g status-right "#{E:@catppuccin_status_application}"
+    set -ag status-right "#{E:@catppuccin_status_session}"
+    set -ag status-right "#{E:@catppuccin_status_date_time}"
+  '';
+
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -20,21 +33,6 @@
       pkgs.tmuxPlugins.sensible
       pkgs.tmuxPlugins.tmux-fzf
       pkgs.tmuxPlugins.yank
-      {
-        plugin = pkgs.tmuxPlugins.catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_flavor "mocha"
-          set -g @catppuccin_window_status_style "rounded"
-          set -g @catppuccin_window_default_text "#W"
-          set -g @catppuccin_window_current_text "#{?window_zoomed_flag, 󰊓 ,}#W"
-          set -g status-right-length 100
-          set -g status-left-length 100
-          set -g status-left ""
-          set -g status-right "#{E:@catppuccin_status_application}"
-          set -ag status-right "#{E:@catppuccin_status_session}"
-          set -ag status-right "#{E:@catppuccin_status_date_time}"
-        '';
-      }
     ];
 
     extraConfig = ''

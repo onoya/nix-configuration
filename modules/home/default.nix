@@ -10,6 +10,22 @@
     ../tmux.nix
   ];
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "blue";
+
+    # Neovim theming is managed by nixCats and its own plugin system
+    nvim.enable = false;
+
+    # Starship uses a custom prompt with non-catppuccin colors
+    starship.enable = false;
+
+    # Ghostty is configured via home.file, not programs.ghostty,
+    # so the catppuccin module wouldn't activate anyway
+    ghostty.enable = false;
+  };
+
   home = {
     stateVersion = "25.05";
 
