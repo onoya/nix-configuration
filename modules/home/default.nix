@@ -57,6 +57,9 @@
     direnv = {
       enable = true;
       enableZshIntegration = true;
+      stdlib = ''
+        eval "$(${lib.getExe pkgs.devenv} direnvrc)"
+      '';
     };
 
     zoxide = {
