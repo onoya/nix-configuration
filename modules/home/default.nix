@@ -31,14 +31,12 @@
       pkgs.lazygit
       pkgs.neo
       pkgs.nh
-      pkgs.ngrok
       pkgs.nix-output-monitor
       pkgs.nodejs_24
       pkgs.mas
       pkgs.pnpm_9
       pkgs.ripgrep
       pkgs.unar
-      pkgs.vscode
       pkgs.yarn
       pkgs.yazi
       pkgs.zoxide

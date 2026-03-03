@@ -76,18 +76,6 @@ nix-channel --remove home-manager
 
 ---
 
-## Cleaning Up
-
-Remove leftover channels if you previously used channel-based Nix (not needed for pure flakes):
-
-```sh
-nix-channel --list              # check for leftover channels
-nix-channel --remove nixpkgs    # remove if present
-nix-channel --remove home-manager
-```
-
----
-
 ## Secrets Management
 
 Secrets (API keys, tokens, credentials) are managed via `~/.secrets`, which is sourced automatically by zsh. This file is **not** tracked in git and must be created manually on each machine.
