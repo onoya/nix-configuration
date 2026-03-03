@@ -22,11 +22,27 @@
         ];
       };
       allowTools = [
-        # MCP servers
+        # MCP servers — Context7
         "mcp__context7__get-library-docs"
         "mcp__context7__query-docs"
         "mcp__context7__resolve-library-id"
         "mcp__sequential-thinking__sequentialthinking"
+
+        # MCP servers — GitHub (read-only / non-destructive)
+        "mcp__github__add_comment_to_pending_review"
+        "mcp__github__get_file_contents"
+        "mcp__github__get_issue"
+        "mcp__github__get_issue_comments"
+        "mcp__github__get_me"
+        "mcp__github__get_pull_request"
+        "mcp__github__get_pull_request_comments"
+        "mcp__github__get_pull_request_diff"
+        "mcp__github__get_pull_request_files"
+        "mcp__github__get_pull_request_reviews"
+        "mcp__github__get_pull_request_status"
+        "mcp__github__list_commits"
+        "mcp__github__list_issues"
+        "mcp__github__list_pull_requests"
 
         # Safe Bash commands — read-only / non-destructive
         "Bash(git status*)"
