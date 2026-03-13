@@ -1,5 +1,19 @@
 { config, lib, pkgs, ... }:
 
+let
+  peonHookCmd = "${config.home.homeDirectory}/.openpeon/peon.sh";
+
+  mkPeonHookEntry = { async ? true, matcher ? "" }: {
+    inherit matcher;
+    hooks = [
+      ({
+        type = "command";
+        command = peonHookCmd;
+        timeout = 10;
+      } // lib.optionalAttrs async { "async" = true; })
+    ];
+  };
+in
 {
   home.file = {
     ".claude/settings.json".text = builtins.toJSON {
@@ -9,17 +23,15 @@
         command = "/bin/bash ${config.home.homeDirectory}/.claude/statusline-command.sh";
       };
       hooks = {
-        Notification = [
-          {
-            matcher = "";
-            hooks = [
-              {
-                type = "command";
-                command = "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'";
-              }
-            ];
-          }
-        ];
+        SessionStart       = [ (mkPeonHookEntry { async = false; }) ];
+        SessionEnd         = [ (mkPeonHookEntry {}) ];
+        SubagentStart      = [ (mkPeonHookEntry {}) ];
+        UserPromptSubmit   = [ (mkPeonHookEntry {}) ];
+        Stop               = [ (mkPeonHookEntry {}) ];
+        Notification       = [ (mkPeonHookEntry {}) ];
+        PermissionRequest  = [ (mkPeonHookEntry {}) ];
+        PostToolUseFailure = [ (mkPeonHookEntry { matcher = "Bash"; }) ];
+        PreCompact         = [ (mkPeonHookEntry {}) ];
       };
       allowTools = [
         # MCP servers — Context7
