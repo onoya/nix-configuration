@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, config, ... }:
 
 let
-  peonPkg = inputs.peon-ping.packages.${pkgs.system}.default;
+  peonPkg = inputs.peon-ping.packages.${pkgs.stdenv.hostPlatform.system}.default;
   peonDir = "${config.home.homeDirectory}/.openpeon";
 in
 {

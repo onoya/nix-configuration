@@ -1,4 +1,4 @@
-{ pkgs, username, system, ... }:
+{ pkgs, username, ... }:
 
 {
   nix.settings = {
@@ -98,5 +98,4 @@
   system.stateVersion = 4;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.hostPlatform = system;
 }
