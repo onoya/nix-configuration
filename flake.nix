@@ -25,13 +25,13 @@
   let
     mkDarwinSystem = { hostname, username, system ? "aarch64-darwin" }:
       darwin.lib.darwinSystem {
-        inherit system;
         modules = [
           ./hosts/${hostname}
           ./modules/darwin
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
+            nixpkgs.hostPlatform = system;
             networking.hostName = hostname;
 
             home-manager.useGlobalPkgs = true;
@@ -39,7 +39,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.sharedModules = [
               inputs.nixCats.homeModule
-              inputs.nix-index-database.hmModules.nix-index
+              inputs.nix-index-database.homeModules.nix-index
               inputs.peon-ping.homeManagerModules.default
             ];
             home-manager.users.${username} = import ./modules/home;
@@ -57,7 +57,7 @@
             };
           }
         ];
-        specialArgs = { inherit inputs nixpkgs username system; };
+        specialArgs = { inherit inputs nixpkgs username; };
       };
   in {
     darwinConfigurations = {
