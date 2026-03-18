@@ -189,6 +189,8 @@ in
 
     ".claude/commands/improve-architecture.md".text = builtins.readFile ./claude/commands/improve-architecture.md;
 
+    ".claude/skills/upgrade-deps/SKILL.md".text = builtins.readFile ./claude/skills/upgrade-deps.md;
+
     ".claude/commands/ship.md".text = ''
       # Ship Command
 
