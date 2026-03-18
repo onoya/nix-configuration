@@ -187,6 +187,8 @@ in
       - Explain the *why* behind architectural decisions
     '';
 
+    ".claude/commands/improve-architecture.md".text = builtins.readFile ./claude/commands/improve-architecture.md;
+
     ".claude/commands/ship.md".text = ''
       # Ship Command
 
