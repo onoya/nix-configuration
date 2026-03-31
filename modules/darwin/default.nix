@@ -1,5 +1,29 @@
 { pkgs, username, ... }:
 
+let
+  # Mac App Store apps — installed via activation script with sudo
+  # because brew bundle + mas install is broken on macOS 14.8.2+
+  # (Apple's CVE-2025-43411 patch requires sudo for installd)
+  # Upstream: https://github.com/nix-darwin/nix-darwin/issues/1627
+  # Tracking: https://github.com/onoya/nix-configuration/issues/63
+  masApps = {
+    Magnet = 441258766;
+    GiphyCapture = 668208984;
+  };
+
+  masInstallScript = pkgs.writeShellScript "install-mas-apps" ''
+    MAS="/opt/homebrew/bin/mas"
+    echo "Installing Mac App Store apps..."
+    ${builtins.concatStringsSep "\n" (builtins.attrValues (builtins.mapAttrs (name: id: ''
+      if ! "$MAS" list | grep -q "^${toString id} "; then
+        echo "Installing ${name} (${toString id})..."
+        sudo "$MAS" install ${toString id}
+      else
+        echo "${name} already installed."
+      fi
+    '') masApps))}
+  '';
+in
 {
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -19,6 +43,10 @@
       cleanup = "zap";  # Removes all unused packages and casks
       upgrade = true;
     };
+
+    brews = [
+      "mas"
+    ];
 
     casks = [
       "authy"
@@ -49,12 +77,13 @@
       "zoom"
     ];
 
-    # Mac App Store Apps
-    masApps = {
-      Magnet = 441258766;
-      GiphyCapture = 668208984;
-    };
+    masApps = {};
   };
+
+  # Install Mac App Store apps via activation script (requires sudo)
+  system.activationScripts.postActivation.text = ''
+    ${masInstallScript}
+  '';
 
   # System configuration
   system = {

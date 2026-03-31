@@ -34,7 +34,7 @@
       pkgs.nh
       pkgs.nix-output-monitor
       pkgs.nodejs_24
-      pkgs.mas
+
       pkgs.pnpm_9
       pkgs.ripgrep
       pkgs.unar
