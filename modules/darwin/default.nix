@@ -13,11 +13,11 @@ let
 
   masInstallScript = pkgs.writeShellScript "install-mas-apps" ''
     MAS="/opt/homebrew/bin/mas"
-    echo "Installing Mac App Store apps..."
+    echo "Managing Mac App Store apps..."
     ${builtins.concatStringsSep "\n" (builtins.attrValues (builtins.mapAttrs (name: id: ''
-      if ! "$MAS" list | grep -q "^${toString id} "; then
+      if ! sudo -u ${username} "$MAS" list | grep -q "^${toString id} "; then
         echo "Installing ${name} (${toString id})..."
-        sudo "$MAS" install ${toString id}
+        sudo -u ${username} "$MAS" get ${toString id} || echo "WARNING: Failed to install ${name}"
       else
         echo "${name} already installed."
       fi
