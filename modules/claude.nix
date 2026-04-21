@@ -33,6 +33,9 @@ in
         PostToolUseFailure = [ (mkPeonHookEntry { matcher = "Bash"; }) ];
         PreCompact         = [ (mkPeonHookEntry {}) ];
       };
+      enabledPlugins = {
+        "superpowers@claude-plugins-official" = true;
+      };
       allowTools = [
         # MCP servers — Context7
         "mcp__context7__get-library-docs"
