@@ -43,6 +43,9 @@ in
         "mcp__context7__resolve-library-id"
         "mcp__sequential-thinking__sequentialthinking"
 
+        # MCP servers — Playwright
+        "mcp__playwright__*"
+
         # MCP servers — GitHub (read-only / non-destructive)
         "mcp__github__add_comment_to_pending_review"
         "mcp__github__get_file_contents"
@@ -225,5 +228,6 @@ in
     # Add user-scoped MCP servers
     /opt/homebrew/bin/claude mcp add context7 -s user "${pkgs.nodejs_24}/bin/npx" -- -y @upstash/context7-mcp || true
     /opt/homebrew/bin/claude mcp add sequential-thinking -s user "${pkgs.nodejs_24}/bin/npx" -- -y @modelcontextprotocol/server-sequential-thinking || true
+    /opt/homebrew/bin/claude mcp add playwright -s user "${pkgs.nodejs_24}/bin/npx" -- -y @playwright/mcp@latest || true
   '';
 }
