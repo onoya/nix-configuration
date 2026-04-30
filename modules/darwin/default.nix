@@ -25,9 +25,10 @@ let
   '';
 in
 {
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    trusted-users = [ "root" username ];
+  # Nix is managed by Determinate Systems' daemon (determinate-nixd).
+  # nix-darwin's nix.* options are disabled to avoid conflicts.
+  determinateNix.enable = true;
+  determinateNix.customSettings = {
     extra-substituters = [ "https://devenv.cachix.org" ];
     extra-trusted-public-keys = [ "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" ];
   };

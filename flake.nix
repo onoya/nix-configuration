@@ -17,17 +17,20 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+
     peon-ping.url = "github:PeonPing/peon-ping";
     peon-ping.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, home-manager, nixpkgs, nix-homebrew, nixCats, nix-index-database, peon-ping }:
+  outputs = inputs@{ self, darwin, determinate, home-manager, nixpkgs, nix-homebrew, nixCats, nix-index-database, peon-ping }:
   let
     mkDarwinSystem = { hostname, username, system ? "aarch64-darwin" }:
       darwin.lib.darwinSystem {
         modules = [
           ./hosts/${hostname}
           ./modules/darwin
+          determinate.darwinModules.default
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
