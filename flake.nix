@@ -69,6 +69,11 @@
         username = "onoya";
       };
 
+      "Work-MacBook-Pro" = mkDarwinSystem {
+        hostname = "Work-MacBook-Pro";
+        username = "onoya";
+      };
+
       "Work-MBP" = mkDarwinSystem {
         hostname = "Work-MBP";
         username = "onoya";
