@@ -89,6 +89,17 @@ darwin-rebuild switch --flake .
 
 Or use the `rebuild` shell alias.
 
+### Migrating existing machines from `~/codes` to `~/dev`
+
+```sh
+mv ~/codes ~/dev
+ln -s ~/dev ~/codes    # backwards compat for IDE recent projects, bookmarks, etc.
+cd ~/dev/nix-configuration
+rebuild
+```
+
+The symlink keeps old references working. Remove it whenever you're ready.
+
 ---
 
 ## Day-to-Day Operations
