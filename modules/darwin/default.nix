@@ -50,7 +50,6 @@ in
     ];
 
     casks = [
-      "authy"
       "brave-browser"
       "chatgpt"
       "claude"
