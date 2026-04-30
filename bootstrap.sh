@@ -230,6 +230,13 @@ build_system() {
   info "This will take a while on the first run — go grab a coffee."
   echo ""
 
+  # nix-darwin needs to own /etc/nix/nix.custom.conf, but the Determinate
+  # installer creates it first. Rename it so nix-darwin can take over.
+  if [[ -f /etc/nix/nix.custom.conf ]] && ! readlink /etc/nix/nix.custom.conf &>/dev/null; then
+    info "Moving Determinate's nix.custom.conf aside for nix-darwin..."
+    sudo mv /etc/nix/nix.custom.conf /etc/nix/nix.custom.conf.before-nix-darwin
+  fi
+
   cd "$REPO_DIR"
   local nix_bin
   nix_bin="$(which nix)"
