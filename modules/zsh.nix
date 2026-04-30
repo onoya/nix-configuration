@@ -107,9 +107,9 @@
         unset FORCE_COLOR
       fi
 
-      # Change to ~/codes directory when opening new terminal (if starting from home)
+      # Change to ~/dev directory when opening new terminal (if starting from home)
       if [[ "$PWD" == "$HOME" ]]; then
-        cd ~/codes 2>/dev/null || true
+        cd ~/dev 2>/dev/null || true
       fi
 
       # Auto-start tmux session (attach to restored/existing session, or create "main")
@@ -122,7 +122,7 @@
 
       # Rebuild system config — works from anywhere, not just inside the repo
       rebuild() {
-        nh darwin switch ${config.home.homeDirectory}/codes/nix-configuration
+        nh darwin switch ${config.home.homeDirectory}/dev/nix-configuration
       }
     '';
   };

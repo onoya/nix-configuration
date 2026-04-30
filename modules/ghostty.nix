@@ -6,7 +6,7 @@
     cursor-style = block
     background-opacity = 0.8
     background-blur = true
-    working-directory = ${config.home.homeDirectory}/codes
+    working-directory = ${config.home.homeDirectory}/dev
     window-save-state = always
     initial-window = false
 

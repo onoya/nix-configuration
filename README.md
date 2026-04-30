@@ -2,24 +2,53 @@
 
 ## New Machine Setup
 
-### 1. Install Nix
+Run the bootstrap script on a fresh macOS — it handles everything:
 
-Use the [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer) — it handles macOS quirks, enables flakes by default, and includes a clean uninstaller.
+```sh
+curl -sL https://raw.githubusercontent.com/onoya/nix-configuration/main/bootstrap.sh | bash
+```
+
+This will:
+1. Install Xcode Command Line Tools
+2. Install Nix via the [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer)
+3. Clone this repository to `~/dev/nix-configuration` (creates `~/dev` if needed)
+4. Let you select or create a machine configuration
+5. Run `nix-darwin switch` to build the full system
+6. Generate an ed25519 SSH key and add it to GitHub
+7. Switch the git remote from HTTPS to SSH
+8. Create `~/.secrets` for environment variables
+
+The script is idempotent — safe to re-run after a partial failure.
+
+### Manual Setup
+
+If you prefer to run steps individually:
+
+<details>
+<summary>Click to expand manual steps</summary>
+
+#### 1. Install Xcode CLI Tools
+
+```sh
+xcode-select --install
+```
+
+#### 2. Install Nix
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-### 2. Clone this repository
+#### 3. Clone this repository
 
 ```sh
-git clone git@github.com:onoya/nix-configuration.git
-cd nix-configuration
+git clone https://github.com/onoya/nix-configuration.git ~/dev/nix-configuration
+cd ~/dev/nix-configuration
 ```
 
-### 3. Add your machine to `flake.nix`
+#### 4. Add your machine to `flake.nix`
 
-Add a new entry under `darwinConfigurations` in `flake.nix`:
+Add a new entry under `darwinConfigurations`:
 
 ```nix
 "Your-MacBook-Name" = mkDarwinSystem {
@@ -28,23 +57,37 @@ Add a new entry under `darwinConfigurations` in `flake.nix`:
 };
 ```
 
-The hostname should match what you want the machine to be called (check current hostname with `scutil --get LocalHostName`).
+Create the host directory:
 
-### 4. Bootstrap nix-darwin (first time only)
+```sh
+mkdir -p hosts/Your-MacBook-Name
+echo '{ ... }: { }' > hosts/Your-MacBook-Name/default.nix
+```
+
+#### 5. Bootstrap nix-darwin (first time only)
 
 ```sh
 nix run nix-darwin -- switch --flake .#Your-MacBook-Name
 ```
 
-This sets the machine hostname, installs all packages, and puts `darwin-rebuild` on your PATH.
+#### 6. Set up SSH
 
-### 5. Subsequent rebuilds
+```sh
+ssh-keygen -t ed25519 -C "your@email.com"
+gh auth login
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname -s)"
+git remote set-url origin git@github.com:onoya/nix-configuration.git
+```
+
+</details>
+
+### Subsequent rebuilds
 
 ```sh
 darwin-rebuild switch --flake .
 ```
 
-Or use the `rebuild` shell alias. After the initial bootstrap, the hostname is set by Nix so no `#hostname` suffix is needed.
+Or use the `rebuild` shell alias.
 
 ---
 
