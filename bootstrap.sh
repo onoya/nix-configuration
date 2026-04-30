@@ -242,6 +242,14 @@ build_system() {
   nix_bin="$(which nix)"
   sudo "$nix_bin" run nix-darwin -- switch --flake ".#$HOSTNAME"
 
+  # Source the new nix-darwin environment so tools like gh are available
+  # in this shell session without requiring a terminal restart.
+  if [[ -f /etc/static/zshenv ]]; then
+    # shellcheck disable=SC1091
+    . /etc/static/zshenv
+  fi
+  export PATH="/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH"
+
   ok "System configuration applied"
 }
 
@@ -286,7 +294,7 @@ setup_ssh() {
     # Only authenticate if not already logged in
     if ! gh auth status &>/dev/null; then
       info "Authenticating with GitHub..."
-      gh auth login --web --hostname github.com --git-protocol ssh
+      gh auth login --web --hostname github.com --git-protocol ssh --scopes admin:public_key
     else
       ok "Already authenticated with GitHub"
     fi
