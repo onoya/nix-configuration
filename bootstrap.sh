@@ -25,7 +25,7 @@ fail()  { printf '\033[1;31m✗ %s\033[0m\n' "$*" >&2; exit 1; }
 
 confirm() {
   printf '\033[1;33m? %s [Y/n] \033[0m' "$1"
-  read -r answer
+  read -r answer </dev/tty
   case "${answer:-Y}" in
     [Yy]*) return 0 ;;
     *)     return 1 ;;
@@ -163,7 +163,7 @@ select_hostname() {
   echo ""
 
   printf '\033[1;33m? Select configuration [1-%d]: \033[0m' "$i"
-  read -r selection
+  read -r selection </dev/tty
 
   if [[ "$selection" -eq "$i" ]]; then
     create_new_host
@@ -180,11 +180,11 @@ create_new_host() {
   current_hostname="$(scutil --get LocalHostName 2>/dev/null || hostname -s)"
 
   printf '\033[1;33m? Hostname [%s]: \033[0m' "$current_hostname"
-  read -r input_hostname
+  read -r input_hostname </dev/tty
   HOSTNAME="${input_hostname:-$current_hostname}"
 
   printf '\033[1;33m? Username [%s]: \033[0m' "$(whoami)"
-  read -r input_username
+  read -r input_username </dev/tty
   local username="${input_username:-$(whoami)}"
 
   # Create host directory
@@ -247,7 +247,7 @@ setup_ssh() {
     chmod 700 "$HOME/.ssh"
 
     printf '\033[1;33m? Email for SSH key [ono.naoyaa@gmail.com]: \033[0m'
-    read -r ssh_email
+    read -r ssh_email </dev/tty
     ssh_email="${ssh_email:-ono.naoyaa@gmail.com}"
 
     ssh-keygen -t ed25519 -C "$ssh_email" -f "$SSH_KEY"
