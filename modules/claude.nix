@@ -197,6 +197,8 @@ in
 
     ".claude/skills/upgrade-deps/SKILL.md".text = builtins.readFile ./claude/skills/upgrade-deps.md;
 
+    ".claude/skills/e2e/SKILL.md".text = builtins.readFile ./claude/skills/e2e.md;
+
     ".claude/commands/ship.md".text = ''
       # Ship Command
 
