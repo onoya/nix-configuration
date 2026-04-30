@@ -231,7 +231,9 @@ build_system() {
   echo ""
 
   cd "$REPO_DIR"
-  sudo nix run nix-darwin -- switch --flake ".#$HOSTNAME"
+  local nix_bin
+  nix_bin="$(which nix)"
+  sudo "$nix_bin" run nix-darwin -- switch --flake ".#$HOSTNAME"
 
   ok "System configuration applied"
 }
