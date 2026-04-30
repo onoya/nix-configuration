@@ -97,6 +97,7 @@ in
     # Trackpad
     defaults.trackpad.Clicking = true;
     defaults.trackpad.Dragging = true;
+    defaults.trackpad.TrackpadRightClick = true;
 
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToControl = true;
