@@ -132,10 +132,24 @@ locate_or_clone_repo() {
 select_hostname() {
   local hosts_dir="$REPO_DIR/hosts"
   local hosts=()
+  local current_hostname
+  current_hostname="$(scutil --get LocalHostName 2>/dev/null || hostname -s)"
 
   # Collect existing host directories
   for dir in "$hosts_dir"/*/; do
     [[ -d "$dir" ]] && hosts+=("$(basename "$dir")")
+  done
+
+  # Auto-detect: if current machine hostname matches an existing config, use it
+  for host in "${hosts[@]}"; do
+    if [[ "$host" == "$current_hostname" ]]; then
+      ok "Detected matching configuration: $host"
+      if confirm "Use this configuration?"; then
+        HOSTNAME="$host"
+        return
+      fi
+      break
+    fi
   done
 
   echo ""
