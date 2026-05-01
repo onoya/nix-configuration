@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../brave.nix
     ../claude.nix
     ../fastfetch.nix
     ../ghostty.nix
