@@ -107,8 +107,10 @@
         unset FORCE_COLOR
       fi
 
-      # Change to ~/dev directory when opening new terminal (if starting from home)
-      if [[ "$PWD" == "$HOME" ]]; then
+      # Change to ~/dev when shell starts in a non-meaningful default location.
+      # Covers tmux sessions auto-started by continuum-boot (cwd "/") as well as
+      # plain terminal launches (cwd "$HOME").
+      if [[ "$PWD" == "$HOME" || "$PWD" == "/" ]]; then
         cd ~/dev 2>/dev/null || true
       fi
 
