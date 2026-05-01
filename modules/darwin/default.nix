@@ -68,6 +68,9 @@
     # Disable adding period with double-space
     defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
 
+    # Dark mode by default
+    defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+
     # Trackpad
     defaults.trackpad.Clicking = true;
     defaults.trackpad.Dragging = true;
