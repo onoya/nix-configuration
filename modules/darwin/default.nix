@@ -25,6 +25,7 @@
     };
 
     casks = [
+      "bitwarden"
       "brave-browser"
       "chatgpt"
       "claude"
