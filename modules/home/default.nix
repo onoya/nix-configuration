@@ -10,6 +10,7 @@
     ../nvim.nix
     ../peon-ping.nix
     ../tmux.nix
+    ../zed.nix
     ../zsh.nix
   ];
 
