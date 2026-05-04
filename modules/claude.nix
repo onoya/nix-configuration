@@ -194,6 +194,8 @@ in
     '';
 
     ".claude/commands/improve-architecture.md".text = builtins.readFile ./claude/commands/improve-architecture.md;
+    ".claude/commands/review-pr.md".text = builtins.readFile ./claude/commands/review-pr.md;
+    ".claude/commands/work.md".text = builtins.readFile ./claude/commands/work.md;
 
     ".claude/skills/upgrade-deps/SKILL.md".text = builtins.readFile ./claude/skills/upgrade-deps.md;
 
