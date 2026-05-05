@@ -18,6 +18,7 @@ in
   home.file = {
     ".claude/settings.json".text = builtins.toJSON {
       includeCoAuthoredBy = false;
+      effortLevel = "high";
       statusLine = {
         type = "command";
         command = "/bin/bash ${config.home.homeDirectory}/.claude/statusline-command.sh";
