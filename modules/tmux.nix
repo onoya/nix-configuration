@@ -13,9 +13,15 @@
         plugin = pkgs.tmuxPlugins.resurrect;
         extraConfig = ''
           set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-processes 'ssh psql mysql sqlite3 "~pnpm->pnpm" "~yarn->yarn" "~npm->npm"'
         '';
       }
-      pkgs.tmuxPlugins.continuum
+      {
+        plugin = pkgs.tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-save-interval '5'
+        '';
+      }
       pkgs.tmuxPlugins.better-mouse-mode
       pkgs.tmuxPlugins.sensible
       pkgs.tmuxPlugins.tmux-fzf
