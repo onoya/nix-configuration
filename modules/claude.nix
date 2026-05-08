@@ -37,7 +37,7 @@ in
       enabledPlugins = {
         "superpowers@claude-plugins-official" = true;
       };
-      allowTools = [
+      permissions.allow = [
         # MCP servers — Context7
         "mcp__context7__get-library-docs"
         "mcp__context7__query-docs"
