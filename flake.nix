@@ -11,6 +11,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    # Override brew-src to >= 5.1.9 to fix `to_sym for nil` cask API parser bug (Homebrew/brew@1c8cbf3).
+    # Pinned brew-src in nix-homebrew (5.1.7) is incompatible with the current Homebrew API responses.
+    brew-src.url = "github:Homebrew/brew/5.1.10";
+    brew-src.flake = false;
+    nix-homebrew.inputs.brew-src.follows = "brew-src";
 
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
@@ -23,7 +28,7 @@
     peon-ping.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, determinate, home-manager, nixpkgs, nix-homebrew, nixCats, nix-index-database, peon-ping }:
+  outputs = inputs@{ self, darwin, determinate, home-manager, nixpkgs, nix-homebrew, nixCats, nix-index-database, peon-ping, ... }:
   let
     mkDarwinSystem = { hostname, username, system ? "aarch64-darwin" }:
       darwin.lib.darwinSystem {
