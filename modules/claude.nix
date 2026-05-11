@@ -233,6 +233,8 @@ in
     # Add user-scoped MCP servers
     /opt/homebrew/bin/claude mcp add context7 -s user "${pkgs.nodejs_24}/bin/npx" -- -y @upstash/context7-mcp || true
     /opt/homebrew/bin/claude mcp add sequential-thinking -s user "${pkgs.nodejs_24}/bin/npx" -- -y @modelcontextprotocol/server-sequential-thinking || true
-    /opt/homebrew/bin/claude mcp add playwright -s user "${pkgs.nodejs_24}/bin/npx" -- -y @playwright/mcp@latest || true
+    # Re-register playwright so env vars (TMPDIR) stay in sync; npx writes to TMPDIR and the macOS per-user temp dir breaks the MCP server.
+    /opt/homebrew/bin/claude mcp remove playwright -s user 2>/dev/null || true
+    /opt/homebrew/bin/claude mcp add playwright -s user -e TMPDIR=/tmp -- "${pkgs.nodejs_24}/bin/npx" -y @playwright/mcp@latest || true
   '';
 }
