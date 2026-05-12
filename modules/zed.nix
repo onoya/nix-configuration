@@ -15,7 +15,7 @@
     relative_line_numbers = true;
     soft_wrap = "none";
     cursor_blink = false;
-    cursor_shape = "block";
+    cursor_shape = "bar";
     scroll_beyond_last_line = "off";
     vertical_scroll_margin = 8;
 
