@@ -39,6 +39,7 @@
       "firefox"
       "ghostty"
       "google-chrome"
+      "loom"
       "mongodb-compass"
       "ngrok"
       "notion"
