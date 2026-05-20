@@ -202,6 +202,8 @@ in
 
     ".claude/skills/e2e/SKILL.md".text = builtins.readFile ./claude/skills/e2e.md;
 
+    ".claude/skills/address-review/SKILL.md".text = builtins.readFile ./claude/skills/address-review.md;
+
     ".claude/commands/ship.md".text = ''
       # Ship Command
 
