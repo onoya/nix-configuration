@@ -57,6 +57,7 @@
     masApps = {
       Magnet = 441258766;
       GiphyCapture = 668208984;
+      Amphetamine = 937984704;
     };
   };
 
