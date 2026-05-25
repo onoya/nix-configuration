@@ -10,6 +10,7 @@ let
   extensions = {
     bitwarden     = "nngceckbapebfimnlniiiahkandclblb";
     reactDevtools = "fmkadmapgofadopljbjfkapdkoienihi";
+    vimium        = "dbepggeogbaibhgnhhndojpepiihcmeb";
   };
 
   mkExtensionFile = id: {
