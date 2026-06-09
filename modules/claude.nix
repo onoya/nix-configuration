@@ -48,20 +48,19 @@ in
         "mcp__playwright__*"
 
         # MCP servers — GitHub (read-only / non-destructive)
+        # Note: github-mcp-server unified per-resource reads into `*_read` tools that
+        # dispatch on a `method` parameter. Individual `get_issue`/`get_pull_request_*`
+        # entries no longer match anything.
         "mcp__github__add_comment_to_pending_review"
         "mcp__github__get_file_contents"
-        "mcp__github__get_issue"
-        "mcp__github__get_issue_comments"
         "mcp__github__get_me"
-        "mcp__github__get_pull_request"
-        "mcp__github__get_pull_request_comments"
-        "mcp__github__get_pull_request_diff"
-        "mcp__github__get_pull_request_files"
-        "mcp__github__get_pull_request_reviews"
-        "mcp__github__get_pull_request_status"
+        "mcp__github__issue_read"
         "mcp__github__list_commits"
         "mcp__github__list_issues"
         "mcp__github__list_pull_requests"
+        "mcp__github__pull_request_read"
+        "mcp__github__search_issues"
+        "mcp__github__search_pull_requests"
 
         # Safe Bash commands — read-only / non-destructive
         "Bash(git status*)"
