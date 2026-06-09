@@ -84,10 +84,18 @@ git remote set-url origin git@github.com:onoya/nix-configuration.git
 ### Subsequent rebuilds
 
 ```sh
-darwin-rebuild switch --flake .
+just rebuild
 ```
 
-Or use the `rebuild` shell alias.
+Or use the `rebuild` shell function (works from any directory). Both run `nh darwin switch`, which previews the diff before applying.
+
+Other recipes:
+
+```sh
+just update   # update flake inputs and rebuild
+just gc       # garbage-collect generations older than 30 days
+just          # list all recipes
+```
 
 ### Migrating existing machines from `~/codes` to `~/dev`
 
