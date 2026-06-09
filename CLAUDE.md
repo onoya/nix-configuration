@@ -25,19 +25,32 @@ The system uses a flake-based approach with:
 ## Common Commands
 
 ### System Management
+
+This repo uses [`just`](https://github.com/casey/just) as a task runner and [`nh`](https://github.com/viperML/nh) (nix-helper) as the rebuild driver. `nh` wraps `darwin-rebuild` and shows a diff of what will change before applying.
+
 ```bash
-# Rebuild system configuration (has zsh alias 'rebuild')
-darwin-rebuild switch --flake .
+# Rebuild system configuration (runs `nh darwin switch .`)
+just rebuild
 
-# Update all flake dependencies and rebuild
-nix flake update
-darwin-rebuild switch --flake .
+# Also available as a zsh function `rebuild` that works from any directory
+rebuild
 
-# Clean up old package generations
-nix-collect-garbage --delete-older-than 15d
+# Update flake inputs and rebuild
+just update
+
+# Clean up package generations older than 30 days
+just gc
+
+# List all available recipes
+just
 ```
 
+Prefer `just rebuild` / `rebuild` over `darwin-rebuild switch --flake .` — same end result, but `nh` gives a diff preview and nicer output. Fall back to raw `darwin-rebuild` only when debugging `nh` itself.
+
 ### Initial Setup (for new systems)
+
+Use the bootstrap script — see [README.md](./README.md). For manual first-time bootstrap before `nh` is installed:
+
 ```bash
 nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake .
 ```
@@ -64,7 +77,7 @@ nix run nix-darwin --extra-experimental-features nix-command --extra-experimenta
 
 ### Making Changes
 1. Edit configuration files (`darwin.nix`, `home.nix`, or modules)
-2. Test with `darwin-rebuild switch --flake .`
+2. Test with `just rebuild`
 3. Commit changes to version control
 4. Use feature branches for significant updates
 
