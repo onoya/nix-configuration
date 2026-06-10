@@ -1,3 +1,7 @@
+---
+description: Explore a codebase, surface architectural friction, identify testability improvements, and propose module-deepening refactors (Ousterhout-style "deep modules") as GitHub issue RFCs. Use when the user asks to "improve architecture", "audit the codebase", "find refactor opportunities", or wants RFC-style proposals for structural changes.
+---
+
 # Improve Codebase Architecture
 
 Explore a codebase like an AI would, surface architectural friction, discover opportunities for improving testability, and propose module-deepening refactors as GitHub issue RFCs.
