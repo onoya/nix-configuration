@@ -125,6 +125,20 @@ Bullets. Style, naming, micro-preferences. Don't belabor.
 **Nice work**
 Call out what's genuinely well done — a sharp abstraction, a clean test, an edge case you weren't expecting them to catch. Engineers ship better code when good craft gets noticed. Don't fabricate praise; if there's nothing notable, skip this section rather than inventing something.
 
+## Step 5 — posting the review
+
+Do **not** post anything until the user explicitly asks you to (e.g. "post it", "submit the review", "send it"). Show the review in chat first; wait for the go-ahead.
+
+When they do ask, submit it as a *review* — not a loose comment — using the verdict from Step 4 to pick the flag:
+
+- **LGTM** → `gh pr review <PR> --approve --body "$(cat <<'EOF' … EOF)"`
+- **Needs work** → `gh pr review <PR> --request-changes --body "$(cat <<'EOF' … EOF)"`
+- **Let's talk** → `gh pr review <PR> --comment --body "$(cat <<'EOF' … EOF)"`
+
+Never fall back to `gh pr comment` — that creates an issue comment with no review state attached.
+
+**Strip the scaffolding from the body before posting.** The verdict label (`LGTM` / `Needs work` / `Let's talk`) and the section headers used in chat (`**Summary**`, `**Blockers**`, `**Worth fixing**`, `**Nits**`, `**Nice work**`) are for you and the user — they're not part of the posted review. The approve/request-changes state already communicates the verdict; the body should read like a human review comment, not a filled-in template.
+
 ## Tone
 
 Write like a human who's actually read the code. Plain language. Opinions backed by reasoning. Snippets when they help. If something is gnarly, say so. If you like a choice, say so. If you're unsure, say "I might be missing context here" — that honesty is more useful than fake confidence.
