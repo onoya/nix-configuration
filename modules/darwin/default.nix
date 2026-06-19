@@ -44,6 +44,7 @@
       "ngrok"
       "notion"
       "obs"
+      "openvpn-connect"
       "raycast"
       "slack"
       "spotify"
