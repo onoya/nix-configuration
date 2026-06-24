@@ -84,6 +84,8 @@ Read with these in mind, roughly in order of importance:
 
 ## Step 4 — write it up
 
+Never label the review as "friendly", "conversational", or anything similar — no `Review (friendly)` header, no "here's my friendly review" preamble. That word describes the *tone* you write in; it never appears in the output. Just write the review.
+
 **Summary**
 A sentence or two: what's changing and whether the approach holds up.
 
@@ -149,5 +151,6 @@ What to avoid:
 - Rubric language ("Weight: HIGH", "Severity: 3"). Just say what matters.
 - Generic checklist comments that could apply to any PR. Every comment should be specific to this code.
 - Critique without a path forward. Always suggest the fix.
+- Labeling the review itself as "friendly" or "conversational" — that's the tone, not a header. Never write `Review (friendly)` or similar.
 
 Now review this PR: $ARGUMENTS
