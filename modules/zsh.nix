@@ -114,8 +114,9 @@
         cd ~/dev 2>/dev/null || true
       fi
 
-      # Auto-start tmux session (attach to restored/existing session, or create "main")
-      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+      # Auto-start tmux session (attach to restored/existing session, or create "main").
+      # Set NO_TMUX=1 to opt out (e.g. for debugging outside a tmux session).
+      if [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
         tmux attach 2>/dev/null || exec tmux new-session -s main
       fi
 

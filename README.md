@@ -156,3 +156,37 @@ export AWS_SECRET_ACCESS_KEY="..."
 ```
 
 After editing `~/.secrets`, run `source ~/.zshrc` or open a new terminal.
+
+---
+
+## Tmux
+
+### Auto-attach on shell start
+
+New shells automatically attach to the existing tmux server (or create a `main` session if none exists). To open a shell **without** tmux — useful for debugging the shell environment itself, comparing behavior in/out of tmux, or working with tools that misbehave under tmux — set `NO_TMUX=1`:
+
+```sh
+NO_TMUX=1 zsh                # one-off raw shell
+alias rawsh='NO_TMUX=1 zsh'  # or alias it
+```
+
+The tmux server keeps running and saving in the background regardless of whether you're attached, so opting out costs nothing in terms of session persistence.
+
+### Session persistence
+
+Sessions are saved by [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) and auto-saved/auto-restored by [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum):
+
+- **Save interval**: every 5 minutes (configured in `modules/tmux.nix`)
+- **Save location**: `~/.local/share/tmux/resurrect/` — `last` symlinks to the most recent snapshot
+- **Auto-restore on boot**: enabled (`@continuum-boot on`, `@continuum-restore on`)
+- **Manual save/restore**: `prefix + Ctrl-s` to save, `prefix + Ctrl-r` to restore
+
+### Auto-restored processes
+
+By default resurrect only restarts a small allowlist of "safe" programs (vim, nvim, less, etc.) when restoring. The `@resurrect-processes` option in `modules/tmux.nix` extends this to include `ssh`, `psql`, `mysql`, `sqlite3`, and `pnpm`/`yarn`/`npm`. Add more as needed — see [resurrect's docs](https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_programs.md) for syntax (especially the `~name->command` rewrite form).
+
+### Troubleshooting
+
+- **Auto-restore on boot didn't fully restore my sessions** — known continuum quirk; tmux can start before plugins are fully wired. Manual `prefix + Ctrl-r` always works as a fallback.
+- **A session went missing after reboot** — most likely it was created less than 5 minutes before shutdown and never made it into a snapshot. Check `~/.local/share/tmux/resurrect/last` to see what was actually captured.
+- **A process didn't auto-restart** — only programs listed in `@resurrect-processes` (plus the built-in allowlist) are restarted; everything else comes back as an empty shell at the right cwd.
