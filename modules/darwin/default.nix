@@ -20,7 +20,11 @@
     # Run `brew update` manually if you want to refresh formulae.
     onActivation = {
       autoUpdate = false;
-      cleanup = "zap";  # Removes all unused packages and casks
+      # cleanup is disabled: nix-darwin passes `brew bundle --force-cleanup`,
+      # which Homebrew 6.x removed (now `--cleanup`), breaking activation.
+      # Restore to "zap" once upstream nix-darwin emits the new flag.
+      # Manual cleanup meanwhile: `brew bundle cleanup --file=<Brewfile> --zap --force`
+      cleanup = "none";
       upgrade = true;
     };
 
