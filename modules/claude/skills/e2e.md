@@ -113,6 +113,40 @@ Use the `browser_snapshot` result to understand the page:
 - Prefer targeting by `ref=` from snapshot, then by `data-testid`, then by role+name
 </step_3>
 
+<setup_and_preconditions>
+**Set up whatever state the test needs — don't bail on missing data or a disabled switch.**
+
+A test failing because a feature flag is off, a record doesn't exist, or an account lacks the right
+state is NOT a test result — it's a missing precondition. In a **local, preview, or staging
+environment**, you are free to do whatever it takes to get the app into a testable state. Default to
+fixing the precondition and continuing, not stopping to ask.
+
+You may freely:
+- **Toggle feature flags / settings switches** — through the app's own UI, an admin panel, a config
+  endpoint, environment variables, or a flag service. Flip the switch, then test the feature behind it.
+- **Create, update, or delete data** — seed a user, create the record the flow expects, set an account
+  to the right plan/role/status, clear stale state. Use the app UI, a seed script, an API call
+  (`curl`/`Bash`), or a direct DB query if connection details are available.
+- **Run setup commands** — `Bash` for seed/migration/fixture scripts, CLI tools, or one-off API calls
+  to provision what the scenario requires.
+- **Use `browser_evaluate`** to set `localStorage`/`sessionStorage`/cookies, dispatch app actions, or
+  flip client-side flags directly.
+- **Authenticate as whatever user the test needs** — create the account or escalate its role if the
+  current one can't reach the feature.
+
+**Guardrails:**
+- This freedom applies to **local, preview, and staging** environments. Confirm which environment the
+  target URL points at before mutating data — if it looks like **production** (or you can't tell), ask
+  the user before creating/modifying/deleting anything.
+- Note in the final report what state you set up (flags flipped, data seeded) so results are reproducible.
+- Prefer the least destructive path that unblocks the test (create new test data over mutating existing
+  records; scope changes to a throwaway test account).
+- After setting up a precondition, take a fresh `browser_snapshot` — the UI likely changed.
+
+When a flow stalls on a missing precondition, the right move is to **set it up and keep going**, only
+falling back to `SKIP` (with a clear note on what was missing) if you genuinely can't provision it.
+</setup_and_preconditions>
+
 <step_4>
 **Execute test scenario**
 
@@ -233,9 +267,10 @@ After all tests are complete:
 - NEVER take screenshots as the primary way to understand the page — use `browser_snapshot` (accessibility tree) for element targeting, screenshots only for visual evidence of failures
 - NEVER hard-code wait times longer than 5 seconds — if something takes that long, investigate why
 - NEVER fill forms field-by-field when `browser_fill_form` can do it in one call
-- NEVER continue a multi-step flow after a blocking failure (e.g., login failed → skip dashboard tests)
+- NEVER continue a multi-step flow after a *genuine* blocking failure (e.g., login broken → skip dashboard tests). A missing precondition (flag off, data absent) is NOT a blocking failure — set it up and continue (see `<setup_and_preconditions>`)
 - DO NOT start a dev server — the user manages their own dev server
-- DO NOT modify application code without asking — suggest `data-testid` additions but let the user approve
+- DO NOT modify application **source code** without asking — suggest `data-testid` additions but let the user approve. (This does NOT restrict setting up runtime test state — data, flags, and switches are fair game in non-production environments.)
+- DO NOT create, modify, or delete data against a **production** environment without explicit user approval — confirm the environment first if unsure
 </anti_patterns>
 
 <tips>
